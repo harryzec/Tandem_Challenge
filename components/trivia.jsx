@@ -1,45 +1,44 @@
 import React from "react";
-import Questions from '../trivia.js'
+import {PracticeTrivia, shuffle} from '../trivia.js'
+import Card from './card'
 
 class Trivia extends React.Component {
   constructor(props) {
     super(props);
-    //let questions = new Game.Questions();
-    //this.state = {i: 0, questions: questions}; 
-    //this.switchQuestion = this.switchQuestion.bind(this);
-    
+    let practiceTrivia = new PracticeTrivia();
+    this.state = {i: 0, questions: practiceTrivia.questions}; 
+    this.switchQuestion = this.switchQuestion.bind(this);
   }
   
   switchQuestion(e){
-   e.prevenDefault();
-   let j = i+1;
-   this.setState({i: j});
+    e.preventDefault();
+    this.setState({i: this.state.i+1});
   }
 
   render() {
-    return(
-      <div>lol
-      </div>
-    )
+  
+    let card = this.state.questions[this.state.i];
+    let question = card.question;
+    let answer = card.correct;
+    let incorrect = card.incorrect
 
-    /*let card = this.state.questions[this.state.i].map(card => {
-      let q = card[question];
-      let a = card[correct];
-      let i = card[incorrect];
+    let options = incorrect.concat(answer)
 
+    shuffle(options)
+     
+    options = options.map(option => {
       return (
-        <div>
-          <p>{q}</p>
-          <p>{a}</p>
-          <p>{i}</p>
-        </div>
+       <div>
+         {option}
+       </div>
       )
     })
-    */
+
 
     return(
       <div>
-      <h1>pussy</h1>
+        <Card question={question} answer={answer} options={options}/>
+        <button onClick={this.switchQuestion}>Wanna get high??</button>
       </div>
     )
   }

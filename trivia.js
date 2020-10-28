@@ -1,34 +1,33 @@
-var json = require('./Apprentice_TandemFor400_Data.json');
-
-console.log(json)
-
-/*
-const fs = require('fs');
-let rawdata = fs.readFileSync('./Apprentice_TandemFor400_Data.json');
-*/
+var data = require('./Apprentice_TandemFor400_Data.json');
 
 
-var data = JSON.parse(json);
 
-// console.log(data)
-
-
-class Questions {
+export class PracticeTrivia {
   constructor() {
-    this.questions = this.getRandomQuestions(data);
+    this.questions = this.generateQuestions(data);
+    this.current = i;
+    this.end = this.questions.length;
+    this.score = 0;
+    this.wrong = [];
   }
 
-  getRandomQuestions(quest) {
-    for (let i = quest.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [quest[i], quest[j]] = [quest[j], quest[i]];
+  generateQuestions(questions) {
+      shuffle(questions)
+      return questions.slice(0, 10)
   }
-  return quest.slice(0, 10);
+
+  play() {
+
+    
   }
+
+ 
+  
 }
 
-//let q = new Questions();
-
-//console.log(q.questions)
-
-//export default Questions;
+export function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}

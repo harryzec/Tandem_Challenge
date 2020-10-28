@@ -1,0 +1,45 @@
+.maincardcontainer {
+  position: relative;
+  width: 250px;
+  height: 320px;
+}
+
+.none{
+  display: none;
+}
+
+.thecard{
+  position: absolute;
+  width:100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.thecardclick{
+  position: absolute;
+  width:100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  transform: rotateY(180deg)
+}
+
+.thefront{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #ffc728;
+  color: #333;
+}
+
+.theback{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #ffc728;;
+  color: #333;
+  transform: rotateY(180deg)
+}

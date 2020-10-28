@@ -97,6 +97,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _trivia_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../trivia.js */ "./trivia.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -121,26 +122,57 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Trivia = /*#__PURE__*/function (_React$Component) {
   _inherits(Trivia, _React$Component);
 
   var _super = _createSuper(Trivia);
 
   function Trivia(props) {
+    var _this;
+
     _classCallCheck(this, Trivia);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    var questions = new _trivia_js__WEBPACK_IMPORTED_MODULE_1__["Questions"]();
+    _this.state = {
+      i: 0,
+      questions: questions
+    };
+    _this.switchQuestion = _this.switchQuestion.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Trivia, [{
+    key: "switchQuestion",
+    value: function switchQuestion(e) {
+      e.prevenDefault();
+      var j = i + 1;
+      this.setState({
+        i: j
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "pussy"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "lol"));
+      var card = this.state.questions[this.state.i].map(function (card) {
+        var q = card[question];
+        var a = card[correct];
+        var i = card[incorrect];
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, q), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, a), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, i));
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "'pussy'"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "lol"), card, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.switchQuestion
+      }));
     }
   }]);
 
   return Trivia;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // render the card.. transition the card so thatit slides up the screen flips then slides up again
+// so here i just put in one question at a time 
+// when it renders a different card iut thrwos that shit up
+// on click is switches this shit uppp..
+
 
 /* harmony default export */ __webpack_exports__["default"] = (Trivia);
 
@@ -20549,6 +20581,52 @@ module.exports = validateDOMNesting;
 
 module.exports = __webpack_require__(/*! ./lib/React */ "./node_modules/react/lib/React.js");
 
+
+/***/ }),
+
+/***/ "./trivia.js":
+/*!*******************!*\
+  !*** ./trivia.js ***!
+  \*******************/
+/*! exports provided: Questions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Questions", function() { return Questions; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var fs = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'fs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var rawdata = fs.readFileSync('./Apprentice_TandemFor400_Data.json');
+var data = JSON.parse(rawdata);
+var Questions = /*#__PURE__*/function () {
+  function Questions() {
+    _classCallCheck(this, Questions);
+
+    this.questions = this.getRandomQuestions(data);
+  }
+
+  _createClass(Questions, [{
+    key: "getRandomQuestions",
+    value: function getRandomQuestions(quest) {
+      for (var i = quest.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var _ref = [quest[j], quest[i]];
+        quest[i] = _ref[0];
+        quest[j] = _ref[1];
+      }
+
+      return quest.slice(0, 10);
+    }
+  }]);
+
+  return Questions;
+}(); // write tests here
 
 /***/ })
 

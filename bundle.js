@@ -81,10 +81,21 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./entry.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./entry.jsx");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./Apprentice_TandemFor400_Data.json":
+/*!*******************************************!*\
+  !*** ./Apprentice_TandemFor400_Data.json ***!
+  \*******************************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("[{\"question\":\"What was Tandem previous name?\",\"incorrect\":[\"Tandem\",\"Burger Shack\",\"Extraordinary Humans\"],\"correct\":\"Devmynd\"},{\"question\":\"In Shakespeare's play Julius Caesar, Caesar's last words were...\",\"incorrect\":[\"Iacta alea est!\",\"Vidi, vini, vici\",\"Aegri somnia vana\"],\"correct\":\"Et tu, Brute?\"},{\"question\":\"A group of tigers are referred to as:\",\"incorrect\":[\"Chowder\",\"Pride\",\"Destruction\"],\"correct\":\"Ambush\"},{\"question\":\"What is the top speed an average cat can travel?\",\"incorrect\":[\"42 mph\",\"13 mph\",\"9 mph\"],\"correct\":\"31 mph\"},{\"question\":\"A cat can jump to _____ times its own height:\",\"incorrect\":[\"3\",\"9\",\"7\"],\"correct\":\"5\"},{\"question\":\"What is the only letter that doesn't appear in a US state name?\",\"incorrect\":[\"M\",\"Z\",\"X\"],\"correct\":\"Q\"},{\"question\":\"What is the name for a cow-bison hybrid?\",\"incorrect\":[\"Cowson\",\"Bicow\",\"Mooson\"],\"correct\":\"Beefalo\"},{\"question\":\"What is the largest freshwater lake in the world?\",\"incorrect\":[\"Lake Baikal\",\"Lake Michigan\",\"Lake Victoria\"],\"correct\":\"Lake Superior\"},{\"question\":\"In a website address bar, what does WWW stand for?\",\"incorrect\":[\"Wild Wild West\",\"War World Web\"],\"correct\":\"World Wide Web\"},{\"question\":\"In a game of bingo, what number is represented by the name two little ducks?\",\"incorrect\":[\"20\",\"55\",\"77\"],\"correct\":\"22\"},{\"question\":\"According to Greek mythology, who was the first woman on Earth?\",\"incorrect\":[\"Lilith\",\"Eve\",\"Hera\"],\"correct\":\"Pandora\"},{\"question\":\"In which European city would you find Orly airport?\",\"incorrect\":[\"London\",\"Belgium\",\"Munich\"],\"correct\":\"Paris\"},{\"question\":\"Where would you find the Sea of Tranquility?\",\"incorrect\":[\"California\",\"Siberia\",\"China\"],\"correct\":\"The Moon\"},{\"question\":\"Which artist painted 'Girl with a Pearl Earrin'?\",\"incorrect\":[\"Van Gogh\",\"Picasso\",\"Da Vinci\"],\"correct\":\"Vermeer\"},{\"question\":\"What is the official name for the 'hashtag' symbol?\",\"incorrect\":[\"Number sign\",\"Hash Sign\",\"Pound\"],\"correct\":\"Octothorpe\"},{\"question\":\"Not American at all, where is apple pie from?\",\"incorrect\":[\"Japan\",\"Ethiopia\",\"Canada\"],\"correct\":\"England\"},{\"question\":\"What is the national animal of Scotland?\",\"incorrect\":[\"Bear\",\"Rabbit\",\"Seal\"],\"correct\":\"Unicorn\"},{\"question\":\"Where in the world is the only place where Canada is *due south*\",\"incorrect\":[\"Alaska\",\"Russia\",\"Washington\"],\"correct\":\"Detroit\"},{\"question\":\"Approximately how many grapes go into a bottle of wine?\",\"incorrect\":[\"500\",\"200\",\"1000\"],\"correct\":\"700\"},{\"question\":\"How much does a US One Dollar Bill cost to make?\",\"incorrect\":[\"$0.25\",\"$1\",\"$5\"],\"correct\":\"$0.05\"},{\"question\":\"The Vatican bank has the only ATM in the world that allows users to do what?\",\"incorrect\":[\"Receive withdrawls in rosary beads\",\"Vote for the Pope\",\"Purchase indulgences\"],\"correct\":\"Perform transactions in Latin\"}]");
+
+/***/ }),
 
 /***/ "./components/trivia.jsx":
 /*!*******************************!*\
@@ -98,6 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _trivia_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../trivia.js */ "./trivia.js");
+/* harmony import */ var _trivia_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_trivia_js__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -129,18 +141,11 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Trivia);
 
   function Trivia(props) {
-    var _this;
-
     _classCallCheck(this, Trivia);
 
-    _this = _super.call(this, props);
-    var questions = new _trivia_js__WEBPACK_IMPORTED_MODULE_1__["Questions"]();
-    _this.state = {
-      i: 0,
-      questions: questions
-    };
-    _this.switchQuestion = _this.switchQuestion.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.call(this, props); //let questions = new Game.Questions();
+    //this.state = {i: 0, questions: questions}; 
+    //this.switchQuestion = this.switchQuestion.bind(this);
   }
 
   _createClass(Trivia, [{
@@ -155,33 +160,39 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var card = this.state.questions[this.state.i].map(function (card) {
-        var q = card[question];
-        var a = card[correct];
-        var i = card[incorrect];
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, q), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, a), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, i));
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "'pussy'"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "lol"), card, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.switchQuestion
-      }));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "lol");
+      /*let card = this.state.questions[this.state.i].map(card => {
+        let q = card[question];
+        let a = card[correct];
+        let i = card[incorrect];
+         return (
+          <div>
+            <p>{q}</p>
+            <p>{a}</p>
+            <p>{i}</p>
+          </div>
+        )
+      })
+      */
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "pussy"));
     }
   }]);
 
   return Trivia;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // render the card.. transition the card so thatit slides up the screen flips then slides up again
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Trivia); // render the card.. transition the card so thatit slides up the screen flips then slides up again
 // so here i just put in one question at a time 
 // when it renders a different card iut thrwos that shit up
 // on click is switches this shit uppp..
 
-
-/* harmony default export */ __webpack_exports__["default"] = (Trivia);
-
 /***/ }),
 
-/***/ "./entry.js":
-/*!******************!*\
-  !*** ./entry.js ***!
-  \******************/
+/***/ "./entry.jsx":
+/*!*******************!*\
+  !*** ./entry.jsx ***!
+  \*******************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -191,12 +202,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_trivia_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/trivia.jsx */ "./components/trivia.jsx");
+/* harmony import */ var _components_trivia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/trivia */ "./components/trivia.jsx");
 
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_trivia_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('main'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_trivia__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('main'));
 });
 
 /***/ }),
@@ -20588,22 +20599,25 @@ module.exports = __webpack_require__(/*! ./lib/React */ "./node_modules/react/li
 /*!*******************!*\
   !*** ./trivia.js ***!
   \*******************/
-/*! exports provided: Questions */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Questions", function() { return Questions; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var fs = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'fs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var json = __webpack_require__(/*! ./Apprentice_TandemFor400_Data.json */ "./Apprentice_TandemFor400_Data.json");
 
-var rawdata = fs.readFileSync('./Apprentice_TandemFor400_Data.json');
-var data = JSON.parse(rawdata);
+console.log(json);
+/*
+const fs = require('fs');
+let rawdata = fs.readFileSync('./Apprentice_TandemFor400_Data.json');
+*/
+
+var data = JSON.parse(json); // console.log(data)
+
 var Questions = /*#__PURE__*/function () {
   function Questions() {
     _classCallCheck(this, Questions);
@@ -20626,7 +20640,9 @@ var Questions = /*#__PURE__*/function () {
   }]);
 
   return Questions;
-}(); // write tests here
+}(); //let q = new Questions();
+//console.log(q.questions)
+//export default Questions;
 
 /***/ })
 

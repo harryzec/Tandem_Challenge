@@ -1,9 +1,19 @@
+var json = require('./Apprentice_TandemFor400_Data.json');
+
+console.log(json)
+
+/*
 const fs = require('fs');
 let rawdata = fs.readFileSync('./Apprentice_TandemFor400_Data.json');
+*/
 
-const data = JSON.parse(rawdata);
 
-export class Questions {
+var data = JSON.parse(json);
+
+// console.log(data)
+
+
+class Questions {
   constructor() {
     this.questions = this.getRandomQuestions(data);
   }
@@ -17,4 +27,8 @@ export class Questions {
   }
 }
 
-// write tests here 
+//let q = new Questions();
+
+//console.log(q.questions)
+
+//export default Questions;

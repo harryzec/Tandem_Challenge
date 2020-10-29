@@ -5,15 +5,25 @@ import {PracticeTrivia} from '../trivia'
 class Splash extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {practice: null}
+    this.state = {practice: null, instructions: false}
     this.startGame = this.startGame.bind(this);
     this.endGame = this.endGame.bind(this);
+    this.showInstructions = this.showInstructions.bind(this);
+  }
+
+  showInstructions(e) {
+    e.preventDefault();
+    let instruct = "Welcome to QuickTriv! Are you looking to improve your trivia or are you just bored at work? Well you've come to the right place. We have a set of flashcards so you can get in a game of Trivia. The questions are formatted with multiple choice answers. Try our Speed Round for timed questions. Good luck!"
+    for (let i = 0; i < instruct.length; i++) {
+      if (i === 0) this.setState({instructions: instruct[i]});
+      else this.setState({instructions: this.state.instructions + instruct[i]});
+    }
   }
 
   startGame(e) {
     e.preventDefault();
     let trivia = new PracticeTrivia();
-    this.setState({practice: trivia})
+    this.setState({practice: trivia, instructions: false})
   }
 
   endGame(e) {
@@ -24,9 +34,18 @@ class Splash extends React.Component {
   render() {
     let practice;
     let startButton;
+    let instructions;
+
+    if (this.state.instructions) {
+      instructions = (
+        <div className='instructions'>
+        {this.state.instructions}
+        </div>
+      )
+    }
 
     if (this.state.practice !== null) practice = <Trivia practice={this.state.practice} endGame={this.endGame}/>
-    else startButton = <div className='splashButton' onClick={this.startGame}>Play Ball!</div>
+    else startButton = <div className='splashButton' onClick={this.startGame}>Practice!</div>
 
     return(
       <div className='splashPage'>
@@ -35,10 +54,11 @@ class Splash extends React.Component {
           <div className='splashButtons'>
             {startButton}
             <div className='splashButton'>Speed Round</div>
-            <div className='splashButton'>Instructions</div>
+            <div onClick={this.showInstructions} className='splashButton'>Instructions</div>
           </div>
-          <div className='game'>
+          <div className='content'>
             {practice}
+            {instructions}
           </div>
         </div>
       </div>

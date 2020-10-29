@@ -51,9 +51,7 @@ class Trivia extends React.Component {
     })
 
      return(
-      <div>
-        <p>{this.props.practice.score}</p>
-
+      <div className='cardandscore'>
         <div className='maincardcontainer'>
 
         <div className={thecard}>
@@ -77,6 +75,11 @@ class Trivia extends React.Component {
 
         </div>
 
+        </div>
+        
+        <div className='score'>
+          <h3 className='scoreWord'>Score:</h3>
+          <p className='scoreNumber'>{this.props.practice.score}</p>
         </div>
       </div>
      )

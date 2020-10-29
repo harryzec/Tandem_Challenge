@@ -3,13 +3,33 @@
   background-color: rgb(250, 250, 132);
 }
 
+.cardandscore {
+  display: flex;
+  margin-top: 21.5%;
+  margin-left: 8%;
+}
+
 .maincardcontainer {
   position: relative;
   min-width: 400px;
   width: 40vw;
   height: 320px;
-
+  animation-name: in;
+  animation-duration: 2s;
 }
+
+@keyframes in {
+  from {
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    width: 40vw;
+    height: 320px;
+  }
+}
+
+
 
 .none {
   display: none;
@@ -26,6 +46,7 @@
   padding: 4px;
   padding-left: 8px;
   margin-top: 2px;
+  border-bottom: 1px dashed black;
 }
 
 .choice:hover {
@@ -116,7 +137,7 @@
   background: rgb(199, 199, 19);
 }
 
-.game {
+.content {
   background-image: url('deskpic.jpg');
   width: 100vw;
   height: 100vh;
@@ -128,3 +149,28 @@
   padding-bottom: 1%;
 }
 
+.score {
+  display: flex;
+  flex-direction: column;
+  bottom: 0%;
+  color: white;
+  margin-left: 5%;
+  align-self: flex-end;
+}
+
+.scoreWord {
+  margin: auto;
+}
+
+.scoreNumber {
+  margin: auto;
+}
+
+.instructions {
+  font-size: 27px;
+  color: white;
+  width: 40%;
+  height: 30%;
+  margin-top: 19%;
+  margin-left: 15%;
+}

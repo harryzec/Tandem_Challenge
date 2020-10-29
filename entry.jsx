@@ -1,18 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Trivia from './components/trivia'
-import {PracticeTrivia} from './trivia'
-
-function Root() {
-  let newGame = new PracticeTrivia();
-  return(
-      <Trivia practice={newGame}/>
-  )
-}
+import Splash from './components/splash'
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
-	  <Root />,
+	  <Splash/>,
 	  document.getElementById('main')
   );
 });

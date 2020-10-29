@@ -8,8 +8,9 @@ export class PracticeTrivia {
   }
 
   nextQuestion() {
+    debugger
     this.deck.nextCard();
-    if (this.isOver) this.completed = true;
+    if (this.isOver()) this.completed = true;
   }
 
   updateScore(answer) {
@@ -18,7 +19,8 @@ export class PracticeTrivia {
   }
 
   isOver () {
-    return this.deck.len === this.deck.current;
+    debugger
+    return this.deck.len === this.deck.index;
   }
 }
 

@@ -32,11 +32,20 @@ class Trivia extends React.Component {
     let card = this.props.practice.deck.currentCard;
     let thecard = this.state.show ? 'thecard' : 'thecardclick';
 
+    if (this.props.practice.completed) {
+      return(
+        <div>
+          hahahahahahaha looooserr this is your score
+          {this.props.practice.score}
+        </div>
+      )
+    }
+
     let question = card.question;
     let correct = card.correct;
     let options = card.options.map(option => {
       return (
-          <p onClick={(e)=>this.submit(e, option)}>{option}</p>
+          <p className='choice' onClick={(e)=>this.submit(e, option)}>{option}</p>
       )
     })
 
@@ -49,14 +58,20 @@ class Trivia extends React.Component {
         <div className={thecard}>
 
         <div className='thefront'>
-          <p>{question}</p>
-          {options}
+          <div className='cardContent'>
+            <h2 className='cardQuestion'>{question}</h2>
+            {options}
+            
+          </div>
         </div>
 
         <div className='theback'>
-          <p>{correct}</p>
-          <button onClick={this.switchQuestion}>Next Bitch</button>
-          <button onClick={this.flip}>Flip</button>
+          <div className='cardContent'>
+            <p>{correct}</p>
+            <button onClick={this.switchQuestion}>Next Bitch</button>
+            <button onClick={this.flip}>Flip</button>
+          </div>
+          
         </div>
 
         </div>

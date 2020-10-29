@@ -97,6 +97,100 @@ module.exports = JSON.parse("[{\"question\":\"What was Tandem previous name?\",\
 
 /***/ }),
 
+/***/ "./components/splash.jsx":
+/*!*******************************!*\
+  !*** ./components/splash.jsx ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _trivia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./trivia */ "./components/trivia.jsx");
+/* harmony import */ var _trivia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../trivia */ "./trivia.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var Splash = /*#__PURE__*/function (_React$Component) {
+  _inherits(Splash, _React$Component);
+
+  var _super = _createSuper(Splash);
+
+  function Splash(props) {
+    var _this;
+
+    _classCallCheck(this, Splash);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      practice: null
+    };
+    _this.startGame = _this.startGame.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Splash, [{
+    key: "startGame",
+    value: function startGame(e) {
+      e.preventDefault();
+      var trivia = new _trivia__WEBPACK_IMPORTED_MODULE_2__["PracticeTrivia"]();
+      this.setState({
+        practice: trivia
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var practice;
+      var startButton;
+      if (this.state.practice !== null) practice = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_trivia__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        practice: this.state.practice
+      });else startButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.startGame
+      }, "Play Ball!");
+
+      if (this.state.practice !== null) {
+        if (this.state.practice.completed) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You did SHITTY", this.state.practice.score);
+        }
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, startButton, practice);
+    }
+  }]);
+
+  return Splash;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Splash);
+
+/***/ }),
+
 /***/ "./components/trivia.jsx":
 /*!*******************************!*\
   !*** ./components/trivia.jsx ***!
@@ -186,10 +280,16 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
 
       var card = this.props.practice.deck.currentCard;
       var thecard = this.state.show ? 'thecard' : 'thecardclick';
+
+      if (this.props.practice.completed) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hahahahahahaha looooserr this is your score", this.props.practice.score);
+      }
+
       var question = card.question;
       var correct = card.correct;
       var options = card.options.map(function (option) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "choice",
           onClick: function onClick(e) {
             return _this2.submit(e, option);
           }
@@ -201,13 +301,19 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
         className: thecard
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "thefront"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, question), options), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cardContent"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "cardQuestion"
+      }, question), options)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "theback"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cardContent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, correct), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.switchQuestion
       }, "Next Bitch"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.flip
-      }, "Flip")))));
+      }, "Flip"))))));
     }
   }]);
 
@@ -231,22 +337,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_trivia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/trivia */ "./components/trivia.jsx");
-/* harmony import */ var _trivia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./trivia */ "./trivia.js");
+/* harmony import */ var _components_splash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/splash */ "./components/splash.jsx");
 
 
-
-
-
-function Root() {
-  var newGame = new _trivia__WEBPACK_IMPORTED_MODULE_3__["PracticeTrivia"]();
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_trivia__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    practice: newGame
-  });
-}
 
 document.addEventListener("DOMContentLoaded", function () {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Root, null), document.getElementById('main'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_splash__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('main'));
 });
 
 /***/ }),
@@ -20667,8 +20763,9 @@ var PracticeTrivia = /*#__PURE__*/function () {
   _createClass(PracticeTrivia, [{
     key: "nextQuestion",
     value: function nextQuestion() {
+      debugger;
       this.deck.nextCard();
-      if (this.isOver) this.completed = true;
+      if (this.isOver()) this.completed = true;
     }
   }, {
     key: "updateScore",
@@ -20678,7 +20775,8 @@ var PracticeTrivia = /*#__PURE__*/function () {
   }, {
     key: "isOver",
     value: function isOver() {
-      return this.deck.len === this.deck.current;
+      debugger;
+      return this.deck.len === this.deck.index;
     }
   }]);
 

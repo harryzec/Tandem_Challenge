@@ -37,6 +37,7 @@ class Trivia extends React.Component {
         <div>
           hahahahahahaha looooserr this is your score
           {this.props.practice.score}
+          <button onClick={this.props.endGame}>Go Back Bitch</button>
         </div>
       )
     }

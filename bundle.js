@@ -151,6 +151,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       practice: null
     };
     _this.startGame = _this.startGame.bind(_assertThisInitialized(_this));
+    _this.endGame = _this.endGame.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -164,23 +165,27 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "endGame",
+    value: function endGame(e) {
+      e.preventDefault();
+      this.setState({
+        practice: null
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var practice;
       var startButton;
       if (this.state.practice !== null) practice = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_trivia__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        practice: this.state.practice
+        practice: this.state.practice,
+        endGame: this.endGame
       });else startButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.startGame
       }, "Play Ball!");
-
-      if (this.state.practice !== null) {
-        if (this.state.practice.completed) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You did SHITTY", this.state.practice.score);
-        }
-      }
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, startButton, practice);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "gameTitle"
+      }, "QuickTriv"), startButton, practice);
     }
   }]);
 
@@ -282,7 +287,9 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       var thecard = this.state.show ? 'thecard' : 'thecardclick';
 
       if (this.props.practice.completed) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hahahahahahaha looooserr this is your score", this.props.practice.score);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hahahahahahaha looooserr this is your score", this.props.practice.score, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.props.endGame
+        }, "Go Back Bitch"));
       }
 
       var question = card.question;

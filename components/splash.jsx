@@ -7,6 +7,7 @@ class Splash extends React.Component {
     super(props);
     this.state = {practice: null}
     this.startGame = this.startGame.bind(this);
+    this.endGame = this.endGame.bind(this);
   }
 
   startGame(e) {
@@ -15,31 +16,24 @@ class Splash extends React.Component {
     this.setState({practice: trivia})
   }
 
+  endGame(e) {
+    e.preventDefault();
+    this.setState({practice: null});
+  }
   
   render() {
     let practice;
     let startButton;
 
-    if (this.state.practice !== null) practice = <Trivia practice={this.state.practice}/>
+    if (this.state.practice !== null) practice = <Trivia practice={this.state.practice} endGame={this.endGame}/>
     else startButton = <button onClick={this.startGame}>Play Ball!</button>
-
-    if (this.state.practice !== null) {
-      if (this.state.practice.completed) {
-        return(
-          <div>
-            You did SHITTY
-            {this.state.practice.score}
-          </div>
-        )
-      }
-    }
 
     return(
       <div>
+        <h1 className='gameTitle'>QuickTriv</h1>
         {startButton}
         {practice}
       </div>
-      
     )
   }
 }

@@ -180,12 +180,25 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       if (this.state.practice !== null) practice = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_trivia__WEBPACK_IMPORTED_MODULE_1__["default"], {
         practice: this.state.practice,
         endGame: this.endGame
-      });else startButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      });else startButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splashButton",
         onClick: this.startGame
       }, "Play Ball!");
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splashPage"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "gameTitle"
-      }, "QuickTriv"), startButton, practice);
+      }, "QuickTriv"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splashContent"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splashButtons"
+      }, startButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splashButton"
+      }, "Speed Round"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splashButton"
+      }, "Instructions")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "game"
+      }, practice)));
     }
   }]);
 

@@ -26,13 +26,21 @@ class Splash extends React.Component {
     let startButton;
 
     if (this.state.practice !== null) practice = <Trivia practice={this.state.practice} endGame={this.endGame}/>
-    else startButton = <button onClick={this.startGame}>Play Ball!</button>
+    else startButton = <div className='splashButton' onClick={this.startGame}>Play Ball!</div>
 
     return(
-      <div>
+      <div className='splashPage'>
         <h1 className='gameTitle'>QuickTriv</h1>
-        {startButton}
-        {practice}
+        <div className='splashContent'>
+          <div className='splashButtons'>
+            {startButton}
+            <div className='splashButton'>Speed Round</div>
+            <div className='splashButton'>Instructions</div>
+          </div>
+          <div className='game'>
+            {practice}
+          </div>
+        </div>
       </div>
     )
   }

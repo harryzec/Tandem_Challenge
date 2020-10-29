@@ -3,11 +3,6 @@
   background-color: rgb(250, 250, 132);
 }
 
-.gameTitle {
-  color: rgb(158, 158, 9);
-  margin: 0;
-}
-
 .maincardcontainer {
   position: relative;
   min-width: 400px;
@@ -83,11 +78,53 @@
   transform: rotateY(180deg)
 }
 
-#main {
-  background-image: url('deskpic.jpg');
-  height: 100vh;
-  width: 100vw;
-  margin: auto;
-  border-radius: 10px;
-  background-repeat: no-repeat;
+.splashPage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin-left: 3%;
+  margin-top: 2%;
+  flex-direction: column;
 }
+
+.splashContent {
+  display: flex;
+}
+
+.splashButtons {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  height: 100%;
+  margin-right: 2%;
+
+}
+
+.splashButton {
+  margin-bottom: 6%;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 6%;
+  cursor: pointer;
+}
+
+.splashButton:hover {
+  background: yellow;
+}
+
+.splashButton:active {
+  background: rgb(199, 199, 19);
+}
+
+.game {
+  background-image: url('deskpic.jpg');
+  width: 100vw;
+  height: 100vh;
+}
+.gameTitle {
+  color: rgb(117, 117, 33);
+  margin: 0;
+  font-size: 55px;
+  padding-bottom: 1%;
+}
+

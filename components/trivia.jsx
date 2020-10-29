@@ -1,54 +1,70 @@
-import React from "react";
-import {PracticeTrivia, shuffle} from '../trivia.js'
-import Card from './card'
+import React from 'react';
 
 class Trivia extends React.Component {
   constructor(props) {
     super(props);
-    let practiceTrivia = new PracticeTrivia();
-    this.state = {i: 0, questions: practiceTrivia.questions}; 
+    this.state = {show: true, result: null};
+    this.flip = this.flip.bind(this);
     this.switchQuestion = this.switchQuestion.bind(this);
   }
-  
-  switchQuestion(e){
+
+  flip(e) {
     e.preventDefault();
-    this.setState({i: this.state.i+1});
+    this.setState({show: !this.state.show})
+  }
+
+  submit(e, value) {
+    e.preventDefault();
+
+    if (!this.props.practice.deck.currentCard.answered) this.props.practice.updateScore(value);
+
+    this.setState({show: !this.state.show})
+  }
+
+
+  switchQuestion(e) {
+    e.preventDefault()
+    this.props.practice.nextQuestion(this.state.result)
+    this.setState({result: null, show: !this.state.show})
   }
 
   render() {
-  
-    let card = this.state.questions[this.state.i];
+    let card = this.props.practice.deck.currentCard;
+    let thecard = this.state.show ? 'thecard' : 'thecardclick';
+
     let question = card.question;
-    let answer = card.correct;
-    let incorrect = card.incorrect
-
-    let options = incorrect.concat(answer)
-
-    shuffle(options)
-     
-    options = options.map(option => {
+    let correct = card.correct;
+    let options = card.options.map(option => {
       return (
-       <div>
-         {option}
-       </div>
+          <p onClick={(e)=>this.submit(e, option)}>{option}</p>
       )
     })
 
-
-    return(
+     return(
       <div>
-        <Card question={question} answer={answer} options={options}/>
-        <button onClick={this.switchQuestion}>Wanna get high??</button>
+        <p>{this.props.practice.score}</p>
+
+        <div className='maincardcontainer'>
+
+        <div className={thecard}>
+
+        <div className='thefront'>
+          <p>{question}</p>
+          {options}
+        </div>
+
+        <div className='theback'>
+          <p>{correct}</p>
+          <button onClick={this.switchQuestion}>Next Bitch</button>
+          <button onClick={this.flip}>Flip</button>
+        </div>
+
+        </div>
+
+        </div>
       </div>
-    )
+     )
   }
 }
 
 export default Trivia;
-
-
-// render the card.. transition the card so thatit slides up the screen flips then slides up again
-// so here i just put in one question at a time 
-// when it renders a different card iut thrwos that shit up
-
-// on click is switches this shit uppp..

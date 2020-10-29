@@ -1,6 +1,7 @@
 .maincardcontainer {
   position: relative;
-  width: 250px;
+  width: auto;
+  min-width: 100px;
   height: 320px;
 }
 

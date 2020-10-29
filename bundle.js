@@ -97,94 +97,6 @@ module.exports = JSON.parse("[{\"question\":\"What was Tandem previous name?\",\
 
 /***/ }),
 
-/***/ "./components/card.jsx":
-/*!*****************************!*\
-  !*** ./components/card.jsx ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _trivia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../trivia */ "./trivia.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var Card = /*#__PURE__*/function (_React$Component) {
-  _inherits(Card, _React$Component);
-
-  var _super = _createSuper(Card);
-
-  function Card(props) {
-    var _this;
-
-    _classCallCheck(this, Card);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      show: true
-    };
-    _this.flip = _this.flip.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(Card, [{
-    key: "flip",
-    value: function flip(e) {
-      e.preventDefault();
-      this.setState({
-        show: !this.state.show
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var thecard = this.state.show ? 'thecard' : 'thecardclick';
-      console.log(thecard);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "maincardcontainer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: thecard,
-        onClick: this.flip
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "thefront"
-      }, this.props.question, this.props.options), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "theback"
-      }, this.props.answer)));
-    }
-  }]);
-
-  return Card;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (Card);
-
-/***/ }),
-
 /***/ "./components/trivia.jsx":
 /*!*******************************!*\
   !*** ./components/trivia.jsx ***!
@@ -196,8 +108,6 @@ var Card = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _trivia_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../trivia.js */ "./trivia.js");
-/* harmony import */ var _card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./card */ "./components/card.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -219,8 +129,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
 
 
 
@@ -235,52 +143,78 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Trivia);
 
     _this = _super.call(this, props);
-    var practiceTrivia = new _trivia_js__WEBPACK_IMPORTED_MODULE_1__["PracticeTrivia"]();
     _this.state = {
-      i: 0,
-      questions: practiceTrivia.questions
+      show: true,
+      result: null
     };
+    _this.flip = _this.flip.bind(_assertThisInitialized(_this));
     _this.switchQuestion = _this.switchQuestion.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Trivia, [{
+    key: "flip",
+    value: function flip(e) {
+      e.preventDefault();
+      this.setState({
+        show: !this.state.show
+      });
+    }
+  }, {
+    key: "submit",
+    value: function submit(e, value) {
+      e.preventDefault();
+      if (!this.props.practice.deck.currentCard.answered) this.props.practice.updateScore(value);
+      this.setState({
+        show: !this.state.show
+      });
+    }
+  }, {
     key: "switchQuestion",
     value: function switchQuestion(e) {
       e.preventDefault();
+      this.props.practice.nextQuestion(this.state.result);
       this.setState({
-        i: this.state.i + 1
+        result: null,
+        show: !this.state.show
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var card = this.state.questions[this.state.i];
+      var _this2 = this;
+
+      var card = this.props.practice.deck.currentCard;
+      var thecard = this.state.show ? 'thecard' : 'thecardclick';
       var question = card.question;
-      var answer = card.correct;
-      var incorrect = card.incorrect;
-      var options = incorrect.concat(answer);
-      Object(_trivia_js__WEBPACK_IMPORTED_MODULE_1__["shuffle"])(options);
-      options = options.map(function (option) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, option);
+      var correct = card.correct;
+      var options = card.options.map(function (option) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          onClick: function onClick(e) {
+            return _this2.submit(e, option);
+          }
+        }, option);
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_card__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        question: question,
-        answer: answer,
-        options: options
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.practice.score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "maincardcontainer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: thecard
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "thefront"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, question), options), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "theback"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, correct), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.switchQuestion
-      }, "Wanna get high??"));
+      }, "Next Bitch"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.flip
+      }, "Flip")))));
     }
   }]);
 
   return Trivia;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Trivia); // render the card.. transition the card so thatit slides up the screen flips then slides up again
-// so here i just put in one question at a time 
-// when it renders a different card iut thrwos that shit up
-// on click is switches this shit uppp..
+/* harmony default export */ __webpack_exports__["default"] = (Trivia);
 
 /***/ }),
 
@@ -298,11 +232,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_trivia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/trivia */ "./components/trivia.jsx");
+/* harmony import */ var _trivia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./trivia */ "./trivia.js");
 
 
+
+
+
+function Root() {
+  var newGame = new _trivia__WEBPACK_IMPORTED_MODULE_3__["PracticeTrivia"]();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_trivia__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    practice: newGame
+  });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_trivia__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('main'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Root, null), document.getElementById('main'));
 });
 
 /***/ }),
@@ -20694,12 +20638,14 @@ module.exports = __webpack_require__(/*! ./lib/React */ "./node_modules/react/li
 /*!*******************!*\
   !*** ./trivia.js ***!
   \*******************/
-/*! exports provided: PracticeTrivia, shuffle */
+/*! exports provided: PracticeTrivia, Deck, Card, shuffle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PracticeTrivia", function() { return PracticeTrivia; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Deck", function() { return Deck; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Card", function() { return Card; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shuffle", function() { return shuffle; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -20713,31 +20659,91 @@ var PracticeTrivia = /*#__PURE__*/function () {
   function PracticeTrivia() {
     _classCallCheck(this, PracticeTrivia);
 
-    this.questions = this.generateQuestions(data);
-    this.current = i;
-    this.end = this.questions.length;
+    this.deck = new Deck();
     this.score = 0;
-    this.wrong = [];
+    this.completed = false;
   }
 
   _createClass(PracticeTrivia, [{
-    key: "generateQuestions",
-    value: function generateQuestions(questions) {
-      shuffle(questions);
-      return questions.slice(0, 10);
+    key: "nextQuestion",
+    value: function nextQuestion() {
+      this.deck.nextCard();
+      if (this.isOver) this.completed = true;
     }
   }, {
-    key: "play",
-    value: function play() {}
+    key: "updateScore",
+    value: function updateScore(answer) {
+      if (!this.deck.currentCard.correctAnswer(answer)) this.deck.addWrong();else this.score++;
+    }
+  }, {
+    key: "isOver",
+    value: function isOver() {
+      return this.deck.len === this.deck.current;
+    }
   }]);
 
   return PracticeTrivia;
 }();
+var Deck = /*#__PURE__*/function () {
+  function Deck() {
+    _classCallCheck(this, Deck);
+
+    this.cards = this.generateDeck(data).map(function (info) {
+      return new Card(info);
+    });
+    this.index = 0;
+    this.currentCard = this.cards[this.index];
+    this.len = 10;
+    this.wrong = [];
+  }
+
+  _createClass(Deck, [{
+    key: "addWrong",
+    value: function addWrong() {
+      this.wrong.push(this.currentCard);
+    }
+  }, {
+    key: "generateDeck",
+    value: function generateDeck(questions) {
+      shuffle(questions);
+      return questions.slice(0, 10);
+    }
+  }, {
+    key: "nextCard",
+    value: function nextCard() {
+      this.index++;
+      this.currentCard = this.cards[this.index];
+    }
+  }]);
+
+  return Deck;
+}();
+var Card = /*#__PURE__*/function () {
+  function Card(info) {
+    _classCallCheck(this, Card);
+
+    this.question = info.question;
+    this.correct = info.correct;
+    this.options = info.incorrect.concat(info.correct);
+    this.answered = false;
+    shuffle(this.options);
+  }
+
+  _createClass(Card, [{
+    key: "correctAnswer",
+    value: function correctAnswer(answer) {
+      this.answered = true;
+      if (answer === this.correct) return true;else return false;
+    }
+  }]);
+
+  return Card;
+}();
 function shuffle(array) {
-  for (var _i = array.length - 1; _i > 0; _i--) {
-    var j = Math.floor(Math.random() * (_i + 1));
-    var _ref = [array[j], array[_i]];
-    array[_i] = _ref[0];
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var _ref = [array[j], array[i]];
+    array[i] = _ref[0];
     array[j] = _ref[1];
   }
 }

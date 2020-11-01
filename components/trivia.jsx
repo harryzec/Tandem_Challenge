@@ -4,14 +4,14 @@ import Incorrect from './incorrect'
 class Trivia extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {show: true, result: null, start: true, displayScore: false, showGood: false, showBad: false, incorrect: false, time: 6, countdown: true};
+    this.state = {show: true, result: null, start: true, displayScore: false, showGood: false, showBad: false, incorrect: false, time: 5, countdown: true};
     this.flip = this.flip.bind(this);
     this.switchQuestion = this.switchQuestion.bind(this);
     this.beginCount = this.beginCount.bind(this);
   }
 
   beginCount() {
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < 6; i++) {
       let num = i*1000;
       setTimeout(()=> this.setState({time: this.state.time-1}), num)
     }
@@ -139,9 +139,6 @@ class Trivia extends React.Component {
         </div>
       )
     }
-
-    
-
 
     if (this.props.practice.completed) {
       cardClass = 'mainCardOut';

@@ -460,7 +460,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       showGood: false,
       showBad: false,
       incorrect: false,
-      time: 6,
+      time: 5,
       countdown: true
     };
     _this.flip = _this.flip.bind(_assertThisInitialized(_this));
@@ -474,7 +474,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
     value: function beginCount() {
       var _this2 = this;
 
-      for (var i = 1; i < 7; i++) {
+      for (var i = 1; i < 6; i++) {
         var num = i * 1000;
         setTimeout(function () {
           return _this2.setState({

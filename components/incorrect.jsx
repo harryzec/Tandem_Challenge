@@ -3,13 +3,19 @@ import React from 'react'
 class Incorrect extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {i: 0, start: true};
+    this.state = {i: 0, start: true, len: this.props.practice.deck.wrong.length};
     this.next = this.next.bind(this);
   }
 
   next(e) {
     e.preventDefault();
     let i = this.state.i + 1;
+    this.setState({i: i})
+  }
+
+  prev(e) {
+    e.preventDefault();
+    let i = this.state.i-1;
     this.setState({i: i})
   }
 
@@ -30,12 +36,21 @@ class Incorrect extends React.Component {
     if (this.state.start) {
       setTimeout(()=> this.setState({start: false}), 2300);
     } else  {
+
+      let next = <div onClick={this.next}>Next</div>
+      let prev = <div onClick={this.prev}>Prev</div>
+      if (this.state.i === 0) prev = <div>Prev</div>
+      if (this.state.i === this.state.len-1) next = <div onClick={this.props.endGame}>Exit</div>
+
       info = (
         <div className='cardContent'>
           <h2 className='cardQuestion'>{question}</h2>
           {options}
-          <div className='toggleCard'></div>
-          <div onClick={this.next}>Next</div>
+          <div className='toggleCard'>
+            {prev}
+            {next}
+          </div>
+          
         </div>
       ) 
     }

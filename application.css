@@ -41,7 +41,8 @@
 }
 
 .toggleCard {
-  
+  display: flex;
+  justify-content: space-between;
 }
 
 .maincardcontainer {

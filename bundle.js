@@ -145,7 +145,8 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       i: 0,
-      start: true
+      start: true,
+      len: _this.props.practice.deck.wrong.length
     };
     _this.next = _this.next.bind(_assertThisInitialized(_this));
     return _this;
@@ -156,6 +157,15 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
     value: function next(e) {
       e.preventDefault();
       var i = this.state.i + 1;
+      this.setState({
+        i: i
+      });
+    }
+  }, {
+    key: "prev",
+    value: function prev(e) {
+      e.preventDefault();
+      var i = this.state.i - 1;
       this.setState({
         i: i
       });
@@ -193,15 +203,23 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
           });
         }, 2300);
       } else {
+        var next = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.next
+        }, "Next");
+        var prev = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.prev
+        }, "Prev");
+        if (this.state.i === 0) prev = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Prev");
+        if (this.state.i === this.state.len - 1) next = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.props.endGame
+        }, "Exit");
         info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "cardContent"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "cardQuestion"
         }, question), options, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toggleCard"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          onClick: this.next
-        }, "Next"));
+        }, prev, next));
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

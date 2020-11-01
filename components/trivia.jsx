@@ -4,7 +4,7 @@ import Incorrect from './incorrect'
 class Trivia extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {show: true, result: null, start: true, showGood: false, showBad: false, incorrect: false, time: 5, countdown: true};
+    this.state = {show: true, result: null, start: true, incorrect: false, time: 5, countdown: true, judgementWord: ''};
     this.flip = this.flip.bind(this);
     this.switchQuestion = this.switchQuestion.bind(this);
     this.beginCount = this.beginCount.bind(this);
@@ -29,17 +29,14 @@ class Trivia extends React.Component {
     e.preventDefault();
 
     if (!this.props.practice.deck.currentCard.answered) {
-      if (this.props.practice.updateScore(value)) {
-        this.setState({showGood: true, show: !this.state.show})
-        setTimeout(() => this.setState({showGood: false}), 2000)
-      } else {
-        this.setState({showBad: true, show: !this.state.show})
-        setTimeout(() => this.setState({showBad: false}), 2000)
-      }
+      this.props.practice.updateScore(value);
+      this.setState({show: !this.state.show, judgementWord: this.props.practice.deck.currentCard.judgement});
+      let q = this.props.practice.deck.currentCard.question;
+      setTimeout(() => {
+        if (!this.props.practice.deck.currentCard.answered || q === this.props.practice.deck.currentCard.question) this.setState({judgementWord: ''})}, 2000)
     } else {
       this.setState({show: !this.state.show})
     }
-
   }
 
 
@@ -54,8 +51,6 @@ class Trivia extends React.Component {
     let card = this.props.practice.deck.currentCard;
     let thecard = this.state.show ? 'thecard' : 'thecardclick';
     let cardClass = 'maincardcontainer'
-    let showGood = <p className='goodorbad'></p>
-    let timer;
 
     if (this.state.incorrect) {
       return (
@@ -72,22 +67,13 @@ class Trivia extends React.Component {
     if (this.state.time === 0) {
       if (!this.props.practice.deck.currentCard.answered) {
         this.props.practice.updateScore(null);
-        this.setState({showBad: true, show: !this.state.show})
-        setTimeout(() => this.setState({showBad: false}), 2000)
+        this.setState({show: !this.state.show, judgementWord: this.props.practice.deck.currentCard.judgement});
+
+        let q = this.props.practice.deck.currentCard.question;
+
+        setTimeout(() => {
+          if (!this.props.practice.deck.currentCard.answered || q === this.props.practice.deck.currentCard.question) this.setState({judgementWord: ''})}, 2000)
       }
-    }
-
-    if (this.state.showGood) {
-      let words = ['NICE', 'Great!', 'Correct!', 'Perfect', 'Good Job', 'Wiz!'];
-      let index = Math.floor(Math.random()*words.length)
-
-      showGood = (<p className='goodorbad'>{words[index]}</p>)
-    }
-
-    if (this.state.showBad) {
-      let words = ['Aw Man', 'Sorry!', ':(', 'So close', 'Incorrect', 'Almost'];
-      let index = Math.floor(Math.random()*words.length)
-      showGood = (<p className='goodorbad'>{words[index]}</p>)
     }
 
     if (this.props.practice.completed) {
@@ -151,32 +137,33 @@ class Trivia extends React.Component {
 
      return(
       <div className='gameContent'>
-        {showGood}
-      <div className='cardandscore'>
-        <div className={cardClass}>
+        <p className='goodorbad'>{this.state.judgementWord}</p>
 
-        <div className={thecard}>
+        <div className='cardandscore'>
+          <div className={cardClass}>
 
-        <div className='thefront'>
-          {info}
-        </div>
+          <div className={thecard}>
 
-        <div className='theback'>
-          <div className='cardContent'>
-            <p>{correct}</p>
-            <div className='backButtons' onClick={this.switchQuestion}>{nextQ}</div>
-            <div className='backButtons' onClick={this.flip}>See Front</div>
+          <div className='thefront'>
+            {info}
           </div>
+
+          <div className='theback'>
+            <div className='cardContent'>
+              <p>{correct}</p>
+              <div className='backButtons' onClick={this.switchQuestion}>{nextQ}</div>
+              <div className='backButtons' onClick={this.flip}>See Front</div>
+            </div>
+            
+          </div>
+
+          </div>
+
+          </div>
+
+          {score}
           
         </div>
-
-        </div>
-
-        </div>
-
-        {score}
-        
-      </div>
       </div>
      )
   }

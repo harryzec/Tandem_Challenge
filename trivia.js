@@ -76,17 +76,37 @@ export class Card {
     this.correct = info.correct;
     this.options = info.incorrect.concat(info.correct);
     this.answered = false;
-    this.choice = null
+    this.choice = null;
+    this.judgement = ''
 
     shuffle(this.options);
   }
 
   correctAnswer(answer) {
     this.answered = true;
-    if (answer === this.correct) return true;
+    if (answer === this.correct){
+      this.judgement = this.judgementWord(true)
+      return true;
+    } 
+    this.judgement = this.judgementWord(false);
     this.choice = answer;
     return false;
   }
+
+  judgementWord(result) {
+    if (result) {
+      let words = ['NICE', 'Great!', 'Correct!', 'Perfect', 'Good Job', 'Wiz!'];
+      let index = Math.floor(Math.random()*words.length)
+      return words[index];
+    } else {
+      let words = ['Aw Man', 'Sorry!', ':(', 'So close', 'Incorrect', 'Almost'];
+      let index = Math.floor(Math.random()*words.length)
+      return words[index];
+    }
+    
+  }
+
+
 }
 
 export function shuffle(array) {

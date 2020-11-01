@@ -458,11 +458,10 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       show: true,
       result: null,
       start: true,
-      showGood: false,
-      showBad: false,
       incorrect: false,
       time: 5,
-      countdown: true
+      countdown: true,
+      judgementWord: ''
     };
     _this.flip = _this.flip.bind(_assertThisInitialized(_this));
     _this.switchQuestion = _this.switchQuestion.bind(_assertThisInitialized(_this));
@@ -505,27 +504,17 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
 
       if (!this.props.practice.deck.currentCard.answered) {
-        if (this.props.practice.updateScore(value)) {
-          this.setState({
-            showGood: true,
-            show: !this.state.show
+        this.props.practice.updateScore(value);
+        this.setState({
+          show: !this.state.show,
+          judgementWord: this.props.practice.deck.currentCard.judgement
+        });
+        var q = this.props.practice.deck.currentCard.question;
+        setTimeout(function () {
+          if (!_this3.props.practice.deck.currentCard.answered || q === _this3.props.practice.deck.currentCard.question) _this3.setState({
+            judgementWord: ''
           });
-          setTimeout(function () {
-            return _this3.setState({
-              showGood: false
-            });
-          }, 2000);
-        } else {
-          this.setState({
-            showBad: true,
-            show: !this.state.show
-          });
-          setTimeout(function () {
-            return _this3.setState({
-              showBad: false
-            });
-          }, 2000);
-        }
+        }, 2000);
       } else {
         this.setState({
           show: !this.state.show
@@ -555,10 +544,6 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       var card = this.props.practice.deck.currentCard;
       var thecard = this.state.show ? 'thecard' : 'thecardclick';
       var cardClass = 'maincardcontainer';
-      var showGood = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "goodorbad"
-      });
-      var timer;
 
       if (this.state.incorrect) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_incorrect__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -578,33 +563,16 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
         if (!this.props.practice.deck.currentCard.answered) {
           this.props.practice.updateScore(null);
           this.setState({
-            showBad: true,
-            show: !this.state.show
+            show: !this.state.show,
+            judgementWord: this.props.practice.deck.currentCard.judgement
           });
+          var q = this.props.practice.deck.currentCard.question;
           setTimeout(function () {
-            return _this4.setState({
-              showBad: false
+            if (!_this4.props.practice.deck.currentCard.answered || q === _this4.props.practice.deck.currentCard.question) _this4.setState({
+              judgementWord: ''
             });
           }, 2000);
         }
-      }
-
-      if (this.state.showGood) {
-        var words = ['NICE', 'Great!', 'Correct!', 'Perfect', 'Good Job', 'Wiz!'];
-        var index = Math.floor(Math.random() * words.length);
-        showGood = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "goodorbad"
-        }, words[index]);
-      }
-
-      if (this.state.showBad) {
-        var _words = ['Aw Man', 'Sorry!', ':(', 'So close', 'Incorrect', 'Almost'];
-
-        var _index = Math.floor(Math.random() * _words.length);
-
-        showGood = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "goodorbad"
-        }, _words[_index]);
       }
 
       if (this.props.practice.completed) {
@@ -657,15 +625,13 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "cardQuestion"
         }, question), options);
-
-        var _timer;
-
-        if (this.props.speed) _timer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        var timer;
+        if (this.props.speed) timer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
           className: "timer"
         }, "Timer: ", this.state.time);
         score = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "score"
-        }, _timer, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        }, timer, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
           className: "scoreWord"
         }, "Score:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "scoreNumber"
@@ -676,7 +642,9 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       if (this.props.practice.deck.index === 9) nextQ = 'See Results!';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "gameContent"
-      }, showGood, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "goodorbad"
+      }, this.state.judgementWord), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cardandscore"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: cardClass
@@ -21225,6 +21193,7 @@ var Card = /*#__PURE__*/function () {
     this.options = info.incorrect.concat(info.correct);
     this.answered = false;
     this.choice = null;
+    this.judgement = '';
     shuffle(this.options);
   }
 
@@ -21232,9 +21201,30 @@ var Card = /*#__PURE__*/function () {
     key: "correctAnswer",
     value: function correctAnswer(answer) {
       this.answered = true;
-      if (answer === this.correct) return true;
+
+      if (answer === this.correct) {
+        this.judgement = this.judgementWord(true);
+        return true;
+      }
+
+      this.judgement = this.judgementWord(false);
       this.choice = answer;
       return false;
+    }
+  }, {
+    key: "judgementWord",
+    value: function judgementWord(result) {
+      if (result) {
+        var words = ['NICE', 'Great!', 'Correct!', 'Perfect', 'Good Job', 'Wiz!'];
+        var index = Math.floor(Math.random() * words.length);
+        return words[index];
+      } else {
+        var _words = ['Aw Man', 'Sorry!', ':(', 'So close', 'Incorrect', 'Almost'];
+
+        var _index = Math.floor(Math.random() * _words.length);
+
+        return _words[_index];
+      }
     }
   }]);
 

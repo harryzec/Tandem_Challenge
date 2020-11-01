@@ -4,9 +4,17 @@ import Incorrect from './incorrect'
 class Trivia extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {show: true, result: null, start: true, displayScore: false, showGood: false, showBad: false, incorrect: false};
+    this.state = {show: true, result: null, start: true, displayScore: false, showGood: false, showBad: false, incorrect: false, time: 6, countdown: true};
     this.flip = this.flip.bind(this);
     this.switchQuestion = this.switchQuestion.bind(this);
+    this.beginCount = this.beginCount.bind(this);
+  }
+
+  beginCount() {
+    for (let i = 1; i < 7; i++) {
+      let num = i*1000;
+      setTimeout(()=> this.setState({time: this.state.time-1}), num)
+    }
   }
 
   flip(e) {
@@ -25,6 +33,8 @@ class Trivia extends React.Component {
         this.setState({showBad: true, show: !this.state.show})
         setTimeout(() => this.setState({showBad: false}), 2000)
       }
+    } else {
+      this.setState({show: !this.state.show})
     }
 
   }
@@ -33,7 +43,8 @@ class Trivia extends React.Component {
   switchQuestion(e) {
     e.preventDefault()
     this.props.practice.nextQuestion(this.state.result)
-    this.setState({result: null, show: !this.state.show})
+    if (this.props.speed) this.setState({result: null, show: !this.state.show, time: 7, countdown: true})
+    else this.setState({result: null, show: !this.state.show})
   }
 
   render() {
@@ -42,11 +53,29 @@ class Trivia extends React.Component {
     let cardClass = 'maincardcontainer'
     let showGood;
     let showBad;
+    let timer;
 
     if (this.state.incorrect) {
       return (
         <Incorrect practice={this.props.practice} endGame={this.props.endGame}/>
       )
+    }
+
+    if (this.props.speed && this.state.countdown && !this.state.start) {
+      this.beginCount()
+      this.setState({countdown: false});
+    }
+
+    if (this.props.speed) {
+      timer = <div>{this.state.time}</div>
+    }
+
+    if (this.state.time === 0) {
+      if (!this.props.practice.deck.currentCard.answered) {
+        this.props.practice.updateScore(null);
+        this.setState({showBad: true, show: !this.state.show})
+        setTimeout(() => this.setState({showBad: false}), 2000)
+      }
     }
 
     if (this.state.showGood) {
@@ -129,6 +158,7 @@ class Trivia extends React.Component {
       <div className='cardandscore'>
         {showGood}
         {showBad}
+        {timer}
 
         <div className={cardClass}>
 

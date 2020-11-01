@@ -16,14 +16,14 @@ class Splash extends React.Component {
     let instruct = "Welcome to QuickTriv! Are you looking to improve your trivia or are you just bored at work? Well you've come to the right place. We have a set of flashcards so you can get in a game of Trivia. The questions are formatted with multiple choice answers. Try our Speed Round for timed questions. Good luck!"
     for (let i = 0; i < instruct.length; i++) {
       let char = instruct[i];
-      setTimeout(() => this.setState({instructions: instruct}), 30)
+      setTimeout(() => this.setState({instructions: instruct}), 1000)
     }
   }
 
-  startGame(e) {
+  startGame(e, speed = false) {
     e.preventDefault();
     let trivia = new PracticeTrivia();
-    this.setState({practice: trivia, instructions: false})
+    this.setState({practice: trivia, instructions: false, speed: speed})
   }
 
   endGame(e) {
@@ -34,7 +34,10 @@ class Splash extends React.Component {
   render() {
     let practice;
     let startButton;
+    let speedButton;
     let instructions;
+    let instructButton;
+    let quit;
 
     if (this.state.instructions) {
       instructions = (
@@ -44,8 +47,15 @@ class Splash extends React.Component {
       )
     }
 
-    if (this.state.practice !== null) practice = <Trivia practice={this.state.practice} endGame={this.endGame}/>
-    else startButton = <div className='splashButton' onClick={this.startGame}>Practice!</div>
+    if (this.state.practice !== null) {
+      practice = <Trivia practice={this.state.practice} endGame={this.endGame} speed={this.state.speed}/>
+      quit = <div className='splashButton' onClick={this.endGame}>Quit Game</div>
+    }
+    else {
+      startButton = <div className='splashButton' onClick={this.startGame}>Practice!</div>
+      speedButton = <div className='splashButton' onClick={(e) => this.startGame(e, true)}>Speed Round</div>
+      instructButton = <div onClick={this.showInstructions} className='splashButton'>Instructions</div>
+    }
 
     return(
       <div className='splashPage'>
@@ -53,8 +63,9 @@ class Splash extends React.Component {
         <div className='splashContent'>
           <div className='splashButtons'>
             {startButton}
-            <div className='splashButton'>Speed Round</div>
-            <div onClick={this.showInstructions} className='splashButton'>Instructions</div>
+            {speedButton}
+            {instructButton}
+            {quit}
           </div>
           <div className='content'>
             {practice}

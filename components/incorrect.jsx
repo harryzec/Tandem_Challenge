@@ -5,6 +5,7 @@ class Incorrect extends React.Component {
     super(props);
     this.state = {i: 0, start: true, len: this.props.practice.deck.wrong.length};
     this.next = this.next.bind(this);
+    this.prev = this.prev.bind(this);
   }
 
   next(e) {
@@ -16,8 +17,11 @@ class Incorrect extends React.Component {
   prev(e) {
     e.preventDefault();
     let i = this.state.i-1;
+    console.log(i)
     this.setState({i: i})
   }
+
+
 
   render() {
 

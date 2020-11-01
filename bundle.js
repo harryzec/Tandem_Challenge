@@ -149,6 +149,7 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
       len: _this.props.practice.deck.wrong.length
     };
     _this.next = _this.next.bind(_assertThisInitialized(_this));
+    _this.prev = _this.prev.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -166,6 +167,7 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
     value: function prev(e) {
       e.preventDefault();
       var i = this.state.i - 1;
+      console.log(i);
       this.setState({
         i: i
       });
@@ -313,17 +315,19 @@ var Splash = /*#__PURE__*/function (_React$Component) {
           return _this2.setState({
             instructions: instruct
           });
-        }, 30);
+        }, 1000);
       }
     }
   }, {
     key: "startGame",
     value: function startGame(e) {
+      var speed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       e.preventDefault();
       var trivia = new _trivia__WEBPACK_IMPORTED_MODULE_2__["PracticeTrivia"]();
       this.setState({
         practice: trivia,
-        instructions: false
+        instructions: false,
+        speed: speed
       });
     }
   }, {
@@ -337,9 +341,14 @@ var Splash = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var practice;
       var startButton;
+      var speedButton;
       var instructions;
+      var instructButton;
+      var quit;
 
       if (this.state.instructions) {
         instructions = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -347,13 +356,33 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         }, this.state.instructions);
       }
 
-      if (this.state.practice !== null) practice = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_trivia__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        practice: this.state.practice,
-        endGame: this.endGame
-      });else startButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "splashButton",
-        onClick: this.startGame
-      }, "Practice!");
+      if (this.state.practice !== null) {
+        practice = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_trivia__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          practice: this.state.practice,
+          endGame: this.endGame,
+          speed: this.state.speed
+        });
+        quit = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "splashButton",
+          onClick: this.endGame
+        }, "Quit Game");
+      } else {
+        startButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "splashButton",
+          onClick: this.startGame
+        }, "Practice!");
+        speedButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "splashButton",
+          onClick: function onClick(e) {
+            return _this3.startGame(e, true);
+          }
+        }, "Speed Round");
+        instructButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.showInstructions,
+          className: "splashButton"
+        }, "Instructions");
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splashPage"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -362,12 +391,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         className: "splashContent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splashButtons"
-      }, startButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "splashButton"
-      }, "Speed Round"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.showInstructions,
-        className: "splashButton"
-      }, "Instructions")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, startButton, speedButton, instructButton, quit), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content"
       }, practice, instructions)));
     }
@@ -435,14 +459,31 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       displayScore: false,
       showGood: false,
       showBad: false,
-      incorrect: false
+      incorrect: false,
+      time: 6,
+      countdown: true
     };
     _this.flip = _this.flip.bind(_assertThisInitialized(_this));
     _this.switchQuestion = _this.switchQuestion.bind(_assertThisInitialized(_this));
+    _this.beginCount = _this.beginCount.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Trivia, [{
+    key: "beginCount",
+    value: function beginCount() {
+      var _this2 = this;
+
+      for (var i = 1; i < 7; i++) {
+        var num = i * 1000;
+        setTimeout(function () {
+          return _this2.setState({
+            time: _this2.state.time - 1
+          });
+        }, num);
+      }
+    }
+  }, {
     key: "flip",
     value: function flip(e) {
       e.preventDefault();
@@ -453,7 +494,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "submit",
     value: function submit(e, value) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault();
 
@@ -464,7 +505,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
             show: !this.state.show
           });
           setTimeout(function () {
-            return _this2.setState({
+            return _this3.setState({
               showGood: false
             });
           }, 2000);
@@ -474,11 +515,15 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
             show: !this.state.show
           });
           setTimeout(function () {
-            return _this2.setState({
+            return _this3.setState({
               showBad: false
             });
           }, 2000);
         }
+      } else {
+        this.setState({
+          show: !this.state.show
+        });
       }
     }
   }, {
@@ -486,7 +531,12 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
     value: function switchQuestion(e) {
       e.preventDefault();
       this.props.practice.nextQuestion(this.state.result);
-      this.setState({
+      if (this.props.speed) this.setState({
+        result: null,
+        show: !this.state.show,
+        time: 7,
+        countdown: true
+      });else this.setState({
         result: null,
         show: !this.state.show
       });
@@ -494,19 +544,46 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var card = this.props.practice.deck.currentCard;
       var thecard = this.state.show ? 'thecard' : 'thecardclick';
       var cardClass = 'maincardcontainer';
       var showGood;
       var showBad;
+      var timer;
 
       if (this.state.incorrect) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_incorrect__WEBPACK_IMPORTED_MODULE_1__["default"], {
           practice: this.props.practice,
           endGame: this.props.endGame
         });
+      }
+
+      if (this.props.speed && this.state.countdown && !this.state.start) {
+        this.beginCount();
+        this.setState({
+          countdown: false
+        });
+      }
+
+      if (this.props.speed) {
+        timer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.time);
+      }
+
+      if (this.state.time === 0) {
+        if (!this.props.practice.deck.currentCard.answered) {
+          this.props.practice.updateScore(null);
+          this.setState({
+            showBad: true,
+            show: !this.state.show
+          });
+          setTimeout(function () {
+            return _this4.setState({
+              showBad: false
+            });
+          }, 2000);
+        }
       }
 
       if (this.state.showGood) {
@@ -522,7 +599,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
           onClick: this.props.endGame
         }, "Exit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this3.setState({
+            return _this4.setState({
               incorrect: true
             });
           }
@@ -540,7 +617,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "choice",
             onClick: function onClick(e) {
-              return _this3.submit(e, option);
+              return _this4.submit(e, option);
             }
           }, option);
         });
@@ -553,7 +630,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.start) {
         setTimeout(function () {
-          return _this3.setState({
+          return _this4.setState({
             start: false
           });
         }, 2300);
@@ -575,7 +652,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       if (this.props.practice.completed) {
         cardClass = 'mainCardOut';
         if (!this.state.displayScore) setTimeout(function () {
-          return _this3.setState({
+          return _this4.setState({
             displayScore: true
           });
         }, 1000);
@@ -586,7 +663,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cardandscore"
-      }, showGood, showBad, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, showGood, showBad, timer, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: cardClass
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: thecard

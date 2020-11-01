@@ -43,6 +43,7 @@
 .toggleCard {
   display: flex;
   justify-content: space-between;
+  bottom: 0%;
 }
 
 .maincardcontainer {

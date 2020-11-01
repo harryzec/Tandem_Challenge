@@ -1,5 +1,6 @@
 .body {
   margin: 0;
+  font: Cambria;
   background-color: rgb(250, 250, 132);
 }
 
@@ -197,11 +198,11 @@
 }
 
 .choice:hover {
-  background: blue;
+  background: yellow;
 }
 
 .choice:active {
-  background: pink;
+  background: rgb(236, 236, 80);
 }
 
 .cardQuestion {

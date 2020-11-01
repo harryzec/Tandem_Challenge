@@ -9,9 +9,9 @@ export class PracticeTrivia {
   }
 
   nextQuestion() {
-    debugger
     this.deck.nextCard();
     if (this.isOver()) this.completed = true;
+    return this.deck.currentCard;
   }
 
   updateScore(answer) {
@@ -30,7 +30,7 @@ export class PracticeTrivia {
       else if (this.score <= 6) this.range = 'Solid Score'
       else if (this.score <= 9) this.range = 'Trivia Wiz'
       else this.range = 'Perfect Score!'
-      return true
+      return true;
     }
 
     return false;
@@ -48,6 +48,7 @@ export class Deck {
 
   addWrong() {
     this.wrong.push(this.currentCard)
+    return this.wrong;
   }
 
   generateDeck(questions) {

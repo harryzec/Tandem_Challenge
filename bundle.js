@@ -21137,9 +21137,9 @@ var PracticeTrivia = /*#__PURE__*/function () {
   _createClass(PracticeTrivia, [{
     key: "nextQuestion",
     value: function nextQuestion() {
-      debugger;
       this.deck.nextCard();
       if (this.isOver()) this.completed = true;
+      return this.deck.currentCard;
     }
   }, {
     key: "updateScore",
@@ -21183,6 +21183,7 @@ var Deck = /*#__PURE__*/function () {
     key: "addWrong",
     value: function addWrong() {
       this.wrong.push(this.currentCard);
+      return this.wrong;
     }
   }, {
     key: "generateDeck",

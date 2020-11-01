@@ -18,6 +18,18 @@
   margin-left: 23%;
 }
 
+.empty {
+  display: block;
+  height: 10%;
+  margin-top: 20%;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: white;
+  margin-left: 23%;
+  opacity: 0;
+}
+
 .gameContent {
   display: flex;
   margin-left: 8%;

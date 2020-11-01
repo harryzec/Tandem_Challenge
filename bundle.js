@@ -308,13 +308,20 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var instruct = "Welcome to QuickTriv! Are you looking to improve your trivia or are you just bored at work? Well you've come to the right place. We have a set of flashcards so you can get in a game of Trivia. The questions are formatted with multiple choice answers. Try our Speed Round for timed questions. Good luck!";
 
-      for (var i = 0; i < instruct.length; i++) {
+      var _loop = function _loop(i) {
         var _char = instruct[i];
         setTimeout(function () {
-          return _this2.setState({
-            instructions: instruct
+          var currSent = _this2.state.instructions + _char;
+          if (i === 0) currSent = _char;
+
+          _this2.setState({
+            instructions: currSent
           });
-        }, 1000);
+        }, 30 * i);
+      };
+
+      for (var i = 0; i < instruct.length; i++) {
+        _loop(i);
       }
     }
   }, {
@@ -590,19 +597,20 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       }
 
       if (this.props.practice.completed) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "finishedGame"
-        }, "Your Score: ", this.props.practice.score, this.props.practice.range, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "backButtons",
-          onClick: this.props.endGame
-        }, "Exit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        if (this.props.practice.deck.wrong.length) viewWrong = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "backButtons",
           onClick: function onClick() {
             return _this4.setState({
               incorrect: true
             });
           }
-        }, "View the cards you got wrong"));
+        }, "View the cards you got wrong");
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "finishedGame"
+        }, "Your Score: ", this.props.practice.score, this.props.practice.range, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "backButtons",
+          onClick: this.props.endGame
+        }, "Exit"), viewWrong);
       }
 
       var question;
@@ -654,11 +662,13 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
 
       var nextQ = 'Next Question';
       if (this.props.practice.deck.index === 9) nextQ = 'See Results!';
+      var res = this.state.judgementWord === '' ? 'empty' : 'goodorbad';
+      var word = this.state.judgementWord === '' ? 'empty' : this.state.judgementWord;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "gameContent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "goodorbad"
-      }, this.state.judgementWord), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: res
+      }, word), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cardandscore"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: cardClass

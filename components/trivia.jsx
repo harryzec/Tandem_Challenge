@@ -68,7 +68,6 @@ class Trivia extends React.Component {
       if (!this.props.practice.deck.currentCard.answered) {
         this.props.practice.updateScore(null);
         this.setState({show: !this.state.show, judgementWord: this.props.practice.deck.currentCard.judgement});
-
         let q = this.props.practice.deck.currentCard.question;
 
         setTimeout(() => {
@@ -77,12 +76,15 @@ class Trivia extends React.Component {
     }
 
     if (this.props.practice.completed) {
+      
+      if (this.props.practice.deck.wrong.length) viewWrong = <div className='backButtons' onClick={()=> this.setState({incorrect: true})}>View the cards you got wrong</div>
+
       return(
         <div className='finishedGame'>
           Your Score: {this.props.practice.score}
           {this.props.practice.range}
           <div className='backButtons' onClick={this.props.endGame}>Exit</div>
-          <div className='backButtons' onClick={()=> this.setState({incorrect: true})}>View the cards you got wrong</div>
+          {viewWrong}
         </div>
       )
     }
@@ -135,9 +137,12 @@ class Trivia extends React.Component {
     let nextQ = 'Next Question'
     if (this.props.practice.deck.index === 9) nextQ = 'See Results!'
 
+    let res = this.state.judgementWord === '' ? 'empty' : 'goodorbad';
+    let word = this.state.judgementWord === '' ? 'empty' : this.state.judgementWord;
+
      return(
       <div className='gameContent'>
-        <p className='goodorbad'>{this.state.judgementWord}</p>
+        <p className={res}>{word}</p>
 
         <div className='cardandscore'>
           <div className={cardClass}>

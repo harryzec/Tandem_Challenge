@@ -19,8 +19,9 @@ class Splash extends React.Component {
       setTimeout(() => {
         let currSent = this.state.instructions + char;
         if (i === 0) currSent = char;
+        else if (this.state.instructions === false) return;
         this.setState({instructions: currSent})
-      }, 30*i)
+      }, 10*i)
     }
   }
 

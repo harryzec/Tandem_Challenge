@@ -312,12 +312,12 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         var _char = instruct[i];
         setTimeout(function () {
           var currSent = _this2.state.instructions + _char;
-          if (i === 0) currSent = _char;
+          if (i === 0) currSent = _char;else if (_this2.state.instructions === false) return;
 
           _this2.setState({
             instructions: currSent
           });
-        }, 30 * i);
+        }, 10 * i);
       };
 
       for (var i = 0; i < instruct.length; i++) {

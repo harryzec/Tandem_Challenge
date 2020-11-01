@@ -4,7 +4,7 @@ import Incorrect from './incorrect'
 class Trivia extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {show: true, result: null, start: true, displayScore: false, showGood: false, showBad: false, incorrect: false, time: 5, countdown: true};
+    this.state = {show: true, result: null, start: true, showGood: false, showBad: false, incorrect: false, time: 5, countdown: true};
     this.flip = this.flip.bind(this);
     this.switchQuestion = this.switchQuestion.bind(this);
     this.beginCount = this.beginCount.bind(this);
@@ -54,8 +54,7 @@ class Trivia extends React.Component {
     let card = this.props.practice.deck.currentCard;
     let thecard = this.state.show ? 'thecard' : 'thecardclick';
     let cardClass = 'maincardcontainer'
-    let showGood;
-    let showBad;
+    let showGood = <p className='goodorbad'></p>
     let timer;
 
     if (this.state.incorrect) {
@@ -69,10 +68,7 @@ class Trivia extends React.Component {
       this.setState({countdown: false});
     }
 
-    if (this.props.speed) {
-      timer = <div>{this.state.time}</div>
-    }
-
+    
     if (this.state.time === 0) {
       if (!this.props.practice.deck.currentCard.answered) {
         this.props.practice.updateScore(null);
@@ -82,22 +78,25 @@ class Trivia extends React.Component {
     }
 
     if (this.state.showGood) {
-      showGood = (<p>NICE!!</p>)
+      let words = ['NICE', 'Great!', 'Correct!', 'Perfect', 'Good Job', 'Wiz!'];
+      let index = Math.floor(Math.random()*words.length)
+
+      showGood = (<p className='goodorbad'>{words[index]}</p>)
     }
 
     if (this.state.showBad) {
-      showBad = (<p>Aw Man</p>)
+      let words = ['Aw Man', 'Sorry!', ':(', 'So close', 'Incorrect', 'Almost'];
+      let index = Math.floor(Math.random()*words.length)
+      showGood = (<p className='goodorbad'>{words[index]}</p>)
     }
 
-    if (this.state.displayScore) {
-
-
+    if (this.props.practice.completed) {
       return(
-        <div>
+        <div className='finishedGame'>
           Your Score: {this.props.practice.score}
           {this.props.practice.range}
-          <button onClick={this.props.endGame}>Exit</button>
-          <button onClick={()=> this.setState({incorrect: true})}>View the cards you got wrong</button>
+          <div className='backButtons' onClick={this.props.endGame}>Exit</div>
+          <div className='backButtons' onClick={()=> this.setState({incorrect: true})}>View the cards you got wrong</div>
         </div>
       )
     }
@@ -134,32 +133,26 @@ class Trivia extends React.Component {
           {options}
         </div>
       ) 
+      let timer;
+
+      if (this.props.speed) timer = <h3 className='timer'>Timer: {this.state.time}</h3>
 
       score = (
         <div className='score'>
+          {timer}
           <h3 className='scoreWord'>Score:</h3>
           <p className='scoreNumber'>{this.props.practice.score}</p>
         </div>
       )
     }
 
-    if (this.props.practice.completed) {
-      cardClass = 'mainCardOut';
-
-      if (!this.state.displayScore) setTimeout(()=> this.setState({displayScore: true}), 1000)
-
-      info = (
-        <div className='titleCard'>QuickTriv</div>
-      )
-    }
-
+    let nextQ = 'Next Question'
+    if (this.props.practice.deck.index === 9) nextQ = 'See Results!'
 
      return(
-      <div className='cardandscore'>
+      <div className='gameContent'>
         {showGood}
-        {showBad}
-        {timer}
-
+      <div className='cardandscore'>
         <div className={cardClass}>
 
         <div className={thecard}>
@@ -171,7 +164,7 @@ class Trivia extends React.Component {
         <div className='theback'>
           <div className='cardContent'>
             <p>{correct}</p>
-            <div className='backButtons' onClick={this.switchQuestion}>Next Question</div>
+            <div className='backButtons' onClick={this.switchQuestion}>{nextQ}</div>
             <div className='backButtons' onClick={this.flip}>See Front</div>
           </div>
           
@@ -183,6 +176,7 @@ class Trivia extends React.Component {
 
         {score}
         
+      </div>
       </div>
      )
   }

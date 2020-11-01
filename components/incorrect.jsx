@@ -29,8 +29,9 @@ class Incorrect extends React.Component {
     let question = card.question;
     let correct = card.correct;
     let options = card.options.map(option => {
-    if (option === correct) return <p className='choice' onClick={(e)=>this.submit(e, option)}>{option}</p> // give it a green background
-    else return <p className='choice' onClick={(e)=>this.submit(e, option)}>{option}</p>
+    if (option === correct) return <p className='choiceG'>{option}</p> // give it a green background
+    if (option === card.choice) return <p className='choiceB'>{option}</p>
+    else return <p className='choiceN'>{option}</p>
     })
 
     let info = (
@@ -60,12 +61,14 @@ class Incorrect extends React.Component {
     }
 
     return(
+      <div className='cardandscore'>
       <div className='maincardcontainer'>
 
       <div className='thecard'>
 
       <div className='thefront'>
         {info}
+      </div>
       </div>
 
       </div>

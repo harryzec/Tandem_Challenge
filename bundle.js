@@ -182,17 +182,14 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
       var correct = card.correct;
       var options = card.options.map(function (option) {
         if (option === correct) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "choice",
-          onClick: function onClick(e) {
-            return _this2.submit(e, option);
-          }
+          className: "choiceG"
         }, option); // give it a green background
-        else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            className: "choice",
-            onClick: function onClick(e) {
-              return _this2.submit(e, option);
-            }
-          }, option);
+
+        if (option === card.choice) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "choiceB"
+        }, option);else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "choiceN"
+        }, option);
       });
       var info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "titleCard"
@@ -225,12 +222,14 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cardandscore"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "maincardcontainer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "thecard"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "thefront"
-      }, info)));
+      }, info))));
     }
   }]);
 
@@ -322,6 +321,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     key: "startGame",
     value: function startGame(e) {
       var speed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      console.log(speed);
       e.preventDefault();
       var trivia = new _trivia__WEBPACK_IMPORTED_MODULE_2__["PracticeTrivia"]();
       this.setState({
@@ -369,7 +369,9 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       } else {
         startButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "splashButton",
-          onClick: this.startGame
+          onClick: function onClick(e) {
+            return _this3.startGame(e, false);
+          }
         }, "Practice!");
         speedButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "splashButton",
@@ -456,7 +458,6 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       show: true,
       result: null,
       start: true,
-      displayScore: false,
       showGood: false,
       showBad: false,
       incorrect: false,
@@ -554,8 +555,9 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       var card = this.props.practice.deck.currentCard;
       var thecard = this.state.show ? 'thecard' : 'thecardclick';
       var cardClass = 'maincardcontainer';
-      var showGood;
-      var showBad;
+      var showGood = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "goodorbad"
+      });
       var timer;
 
       if (this.state.incorrect) {
@@ -570,10 +572,6 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
         this.setState({
           countdown: false
         });
-      }
-
-      if (this.props.speed) {
-        timer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.time);
       }
 
       if (this.state.time === 0) {
@@ -592,17 +590,31 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       }
 
       if (this.state.showGood) {
-        showGood = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "NICE!!");
+        var words = ['NICE', 'Great!', 'Correct!', 'Perfect', 'Good Job', 'Wiz!'];
+        var index = Math.floor(Math.random() * words.length);
+        showGood = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "goodorbad"
+        }, words[index]);
       }
 
       if (this.state.showBad) {
-        showBad = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Aw Man");
+        var _words = ['Aw Man', 'Sorry!', ':(', 'So close', 'Incorrect', 'Almost'];
+
+        var _index = Math.floor(Math.random() * _words.length);
+
+        showGood = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "goodorbad"
+        }, _words[_index]);
       }
 
-      if (this.state.displayScore) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Your Score: ", this.props.practice.score, this.props.practice.range, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      if (this.props.practice.completed) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "finishedGame"
+        }, "Your Score: ", this.props.practice.score, this.props.practice.range, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "backButtons",
           onClick: this.props.endGame
-        }, "Exit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, "Exit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "backButtons",
           onClick: function onClick() {
             return _this4.setState({
               incorrect: true
@@ -645,30 +657,28 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "cardQuestion"
         }, question), options);
+
+        var _timer;
+
+        if (this.props.speed) _timer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          className: "timer"
+        }, "Timer: ", this.state.time);
         score = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "score"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        }, _timer, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
           className: "scoreWord"
         }, "Score:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "scoreNumber"
         }, this.props.practice.score));
       }
 
-      if (this.props.practice.completed) {
-        cardClass = 'mainCardOut';
-        if (!this.state.displayScore) setTimeout(function () {
-          return _this4.setState({
-            displayScore: true
-          });
-        }, 1000);
-        info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "titleCard"
-        }, "QuickTriv");
-      }
-
+      var nextQ = 'Next Question';
+      if (this.props.practice.deck.index === 9) nextQ = 'See Results!';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "gameContent"
+      }, showGood, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cardandscore"
-      }, showGood, showBad, timer, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: cardClass
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: thecard
@@ -681,10 +691,10 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, correct), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "backButtons",
         onClick: this.switchQuestion
-      }, "Next Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, nextQ), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "backButtons",
         onClick: this.flip
-      }, "See Front"))))), score);
+      }, "See Front"))))), score));
     }
   }]);
 
@@ -21154,7 +21164,7 @@ var PracticeTrivia = /*#__PURE__*/function () {
     key: "isOver",
     value: function isOver() {
       if (this.deck.len === this.deck.index) {
-        if (this.score <= 3) this.range = 'Need Improvements';else if (this.score <= 6) this.range = 'Solid Score';else if (this.score <= 9) this.range = 'Trivia Wiz';else this.range = 'Perfect Score!';
+        if (this.score <= 3) this.range = 'Needs Improvement';else if (this.score <= 6) this.range = 'Solid Score';else if (this.score <= 9) this.range = 'Trivia Wiz';else this.range = 'Perfect Score!';
         return true;
       }
 
@@ -21214,6 +21224,7 @@ var Card = /*#__PURE__*/function () {
     this.correct = info.correct;
     this.options = info.incorrect.concat(info.correct);
     this.answered = false;
+    this.choice = null;
     shuffle(this.options);
   }
 
@@ -21221,7 +21232,9 @@ var Card = /*#__PURE__*/function () {
     key: "correctAnswer",
     value: function correctAnswer(answer) {
       this.answered = true;
-      if (answer === this.correct) return true;else return false;
+      if (answer === this.correct) return true;
+      this.choice = answer;
+      return false;
     }
   }]);
 

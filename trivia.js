@@ -26,7 +26,7 @@ export class PracticeTrivia {
 
   isOver () {
     if (this.deck.len === this.deck.index) {
-      if (this.score <=3) this.range = 'Need Improvements'
+      if (this.score <=3) this.range = 'Needs Improvement'
       else if (this.score <= 6) this.range = 'Solid Score'
       else if (this.score <= 9) this.range = 'Trivia Wiz'
       else this.range = 'Perfect Score!'
@@ -76,6 +76,7 @@ export class Card {
     this.correct = info.correct;
     this.options = info.incorrect.concat(info.correct);
     this.answered = false;
+    this.choice = null
 
     shuffle(this.options);
   }
@@ -83,7 +84,8 @@ export class Card {
   correctAnswer(answer) {
     this.answered = true;
     if (answer === this.correct) return true;
-    else return false;
+    this.choice = answer;
+    return false;
   }
 }
 

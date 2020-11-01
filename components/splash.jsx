@@ -21,6 +21,7 @@ class Splash extends React.Component {
   }
 
   startGame(e, speed = false) {
+    console.log(speed)
     e.preventDefault();
     let trivia = new PracticeTrivia();
     this.setState({practice: trivia, instructions: false, speed: speed})
@@ -52,7 +53,7 @@ class Splash extends React.Component {
       quit = <div className='splashButton' onClick={this.endGame}>Quit Game</div>
     }
     else {
-      startButton = <div className='splashButton' onClick={this.startGame}>Practice!</div>
+      startButton = <div className='splashButton' onClick={(e) => this.startGame(e, false)}>Practice!</div>
       speedButton = <div className='splashButton' onClick={(e) => this.startGame(e, true)}>Speed Round</div>
       instructButton = <div onClick={this.showInstructions} className='splashButton'>Instructions</div>
     }

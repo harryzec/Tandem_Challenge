@@ -9,6 +9,41 @@
   margin-left: 8%;
 }
 
+.mainCardOut {
+  position: relative;
+  min-width: 400px;
+  width: 40vw;
+  height: 320px;
+  animation-name: out;
+  animation-duration: 2s;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+}
+
+@keyframes out {
+  from {
+    width: 40vw;
+    left: 0vw;
+    height: 320px;
+    margin-top: 0%;
+    transform: rotate(0deg);
+    font-size: 50px;
+  }
+  to {
+    width: 0px;
+    height: 0px;
+    left: 13vw;
+    margin-top: 16%;
+    min-width: 0;
+    transform: rotate(-720deg);
+    font-size: 0;
+  }
+}
+
+.toggleCard {
+  
+}
+
 .maincardcontainer {
   position: relative;
   min-width: 400px;
@@ -16,20 +51,39 @@
   height: 320px;
   animation-name: in;
   animation-duration: 2s;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
 }
+
 
 @keyframes in {
   from {
     width: 0px;
     height: 0px;
+    left: 13vw;
+    margin-top: 16%;
+    min-width: 0;
+    transform: rotate(0deg);
+    font-size: 0;
   }
   to {
     width: 40vw;
+    left: 0vw;
     height: 320px;
+    margin-top: 0%;
+    transform: rotate(720deg);
+    font-size: 50px;
   }
 }
 
-
+.titleCard {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+}
 
 .none {
   display: none;
@@ -39,6 +93,34 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
+  animation-duration: 1.6s;
+  animation-name: textin;
+  transition-property: transform;
+}
+
+@keyframes textin {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+.backButtons {
+  border: 1px solid black;
+  margin-top: 3%;
+  padding: 4px;
+  width: 20%;
+  cursor: pointer;
+}
+
+.backButtons:hover {
+  background-color: yellow;
+}
+
+.backButtons:active {
+  color: white;
 }
 
 .choice {
@@ -156,6 +238,9 @@
   color: white;
   margin-left: 5%;
   align-self: flex-end;
+  animation-duration: 1.6s;
+  animation-name: textin;
+  transition-property: transform;
 }
 
 .scoreWord {

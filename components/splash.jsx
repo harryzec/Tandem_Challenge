@@ -15,8 +15,8 @@ class Splash extends React.Component {
     e.preventDefault();
     let instruct = "Welcome to QuickTriv! Are you looking to improve your trivia or are you just bored at work? Well you've come to the right place. We have a set of flashcards so you can get in a game of Trivia. The questions are formatted with multiple choice answers. Try our Speed Round for timed questions. Good luck!"
     for (let i = 0; i < instruct.length; i++) {
-      if (i === 0) this.setState({instructions: instruct[i]});
-      else this.setState({instructions: this.state.instructions + instruct[i]});
+      let char = instruct[i];
+      setTimeout(() => this.setState({instructions: instruct}), 30)
     }
   }
 

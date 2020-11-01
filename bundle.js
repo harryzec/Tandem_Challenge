@@ -97,6 +97,130 @@ module.exports = JSON.parse("[{\"question\":\"What was Tandem previous name?\",\
 
 /***/ }),
 
+/***/ "./components/incorrect.jsx":
+/*!**********************************!*\
+  !*** ./components/incorrect.jsx ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var Incorrect = /*#__PURE__*/function (_React$Component) {
+  _inherits(Incorrect, _React$Component);
+
+  var _super = _createSuper(Incorrect);
+
+  function Incorrect(props) {
+    var _this;
+
+    _classCallCheck(this, Incorrect);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      i: 0,
+      start: true
+    };
+    _this.next = _this.next.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Incorrect, [{
+    key: "next",
+    value: function next(e) {
+      e.preventDefault();
+      var i = this.state.i + 1;
+      this.setState({
+        i: i
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var card = this.props.practice.deck.wrong[this.state.i];
+      var question = card.question;
+      var correct = card.correct;
+      var options = card.options.map(function (option) {
+        if (option === correct) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "choice",
+          onClick: function onClick(e) {
+            return _this2.submit(e, option);
+          }
+        }, option); // give it a green background
+        else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "choice",
+            onClick: function onClick(e) {
+              return _this2.submit(e, option);
+            }
+          }, option);
+      });
+      var info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "titleCard"
+      }, "QuickTriv");
+
+      if (this.state.start) {
+        setTimeout(function () {
+          return _this2.setState({
+            start: false
+          });
+        }, 2300);
+      } else {
+        info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "cardContent"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "cardQuestion"
+        }, question), options, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toggleCard"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.next
+        }, "Next"));
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "maincardcontainer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "thecard"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "thefront"
+      }, info)));
+    }
+  }]);
+
+  return Incorrect;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Incorrect);
+
+/***/ }),
+
 /***/ "./components/splash.jsx":
 /*!*******************************!*\
   !*** ./components/splash.jsx ***!
@@ -160,15 +284,18 @@ var Splash = /*#__PURE__*/function (_React$Component) {
   _createClass(Splash, [{
     key: "showInstructions",
     value: function showInstructions(e) {
+      var _this2 = this;
+
       e.preventDefault();
       var instruct = "Welcome to QuickTriv! Are you looking to improve your trivia or are you just bored at work? Well you've come to the right place. We have a set of flashcards so you can get in a game of Trivia. The questions are formatted with multiple choice answers. Try our Speed Round for timed questions. Good luck!";
 
       for (var i = 0; i < instruct.length; i++) {
-        if (i === 0) this.setState({
-          instructions: instruct[i]
-        });else this.setState({
-          instructions: this.state.instructions + instruct[i]
-        });
+        var _char = instruct[i];
+        setTimeout(function () {
+          return _this2.setState({
+            instructions: instruct
+          });
+        }, 30);
       }
     }
   }, {
@@ -246,6 +373,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _incorrect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./incorrect */ "./components/incorrect.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -270,6 +398,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Trivia = /*#__PURE__*/function (_React$Component) {
   _inherits(Trivia, _React$Component);
 
@@ -283,7 +412,12 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       show: true,
-      result: null
+      result: null,
+      start: true,
+      displayScore: false,
+      showGood: false,
+      showBad: false,
+      incorrect: false
     };
     _this.flip = _this.flip.bind(_assertThisInitialized(_this));
     _this.switchQuestion = _this.switchQuestion.bind(_assertThisInitialized(_this));
@@ -301,11 +435,33 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "submit",
     value: function submit(e, value) {
+      var _this2 = this;
+
       e.preventDefault();
-      if (!this.props.practice.deck.currentCard.answered) this.props.practice.updateScore(value);
-      this.setState({
-        show: !this.state.show
-      });
+
+      if (!this.props.practice.deck.currentCard.answered) {
+        if (this.props.practice.updateScore(value)) {
+          this.setState({
+            showGood: true,
+            show: !this.state.show
+          });
+          setTimeout(function () {
+            return _this2.setState({
+              showGood: false
+            });
+          }, 2000);
+        } else {
+          this.setState({
+            showBad: true,
+            show: !this.state.show
+          });
+          setTimeout(function () {
+            return _this2.setState({
+              showBad: false
+            });
+          }, 2000);
+        }
+      }
     }
   }, {
     key: "switchQuestion",
@@ -320,54 +476,115 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var card = this.props.practice.deck.currentCard;
       var thecard = this.state.show ? 'thecard' : 'thecardclick';
+      var cardClass = 'maincardcontainer';
+      var showGood;
+      var showBad;
 
-      if (this.props.practice.completed) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hahahahahahaha looooserr this is your score", this.props.practice.score, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: this.props.endGame
-        }, "Go Back Bitch"));
+      if (this.state.incorrect) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_incorrect__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          practice: this.props.practice,
+          endGame: this.props.endGame
+        });
       }
 
-      var question = card.question;
-      var correct = card.correct;
-      var options = card.options.map(function (option) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "choice",
-          onClick: function onClick(e) {
-            return _this2.submit(e, option);
+      if (this.state.showGood) {
+        showGood = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "NICE!!");
+      }
+
+      if (this.state.showBad) {
+        showBad = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Aw Man");
+      }
+
+      if (this.state.displayScore) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Your Score: ", this.props.practice.score, this.props.practice.range, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.props.endGame
+        }, "Exit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this3.setState({
+              incorrect: true
+            });
           }
-        }, option);
-      });
+        }, "View the cards you got wrong"));
+      }
+
+      var question;
+      var correct;
+      var options;
+
+      if (card !== undefined) {
+        question = card.question;
+        correct = card.correct;
+        options = card.options.map(function (option) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "choice",
+            onClick: function onClick(e) {
+              return _this3.submit(e, option);
+            }
+          }, option);
+        });
+      }
+
+      var info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "titleCard"
+      }, "QuickTriv");
+      var score;
+
+      if (this.state.start) {
+        setTimeout(function () {
+          return _this3.setState({
+            start: false
+          });
+        }, 2300);
+      } else if (card !== undefined) {
+        info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "cardContent"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "cardQuestion"
+        }, question), options);
+        score = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "score"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          className: "scoreWord"
+        }, "Score:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "scoreNumber"
+        }, this.props.practice.score));
+      }
+
+      if (this.props.practice.completed) {
+        cardClass = 'mainCardOut';
+        if (!this.state.displayScore) setTimeout(function () {
+          return _this3.setState({
+            displayScore: true
+          });
+        }, 1000);
+        info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "titleCard"
+        }, "QuickTriv");
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cardandscore"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "maincardcontainer"
+      }, showGood, showBad, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: cardClass
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: thecard
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "thefront"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "cardContent"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "cardQuestion"
-      }, question), options)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, info), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "theback"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cardContent"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, correct), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, correct), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "backButtons",
         onClick: this.switchQuestion
-      }, "Next Bitch"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Next Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "backButtons",
         onClick: this.flip
-      }, "Flip"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "score"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "scoreWord"
-      }, "Score:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "scoreNumber"
-      }, this.props.practice.score)));
+      }, "See Front"))))), score);
     }
   }]);
 
@@ -20812,6 +21029,7 @@ var PracticeTrivia = /*#__PURE__*/function () {
     this.deck = new Deck();
     this.score = 0;
     this.completed = false;
+    this.range = null;
   }
 
   _createClass(PracticeTrivia, [{
@@ -20824,13 +21042,23 @@ var PracticeTrivia = /*#__PURE__*/function () {
   }, {
     key: "updateScore",
     value: function updateScore(answer) {
-      if (!this.deck.currentCard.correctAnswer(answer)) this.deck.addWrong();else this.score++;
+      if (!this.deck.currentCard.correctAnswer(answer)) {
+        this.deck.addWrong();
+        return false;
+      } else {
+        this.score++;
+        return true;
+      }
     }
   }, {
     key: "isOver",
     value: function isOver() {
-      debugger;
-      return this.deck.len === this.deck.index;
+      if (this.deck.len === this.deck.index) {
+        if (this.score <= 3) this.range = 'Need Improvements';else if (this.score <= 6) this.range = 'Solid Score';else if (this.score <= 9) this.range = 'Trivia Wiz';else this.range = 'Perfect Score!';
+        return true;
+      }
+
+      return false;
     }
   }]);
 
@@ -20863,7 +21091,15 @@ var Deck = /*#__PURE__*/function () {
   }, {
     key: "nextCard",
     value: function nextCard() {
+      var _this = this;
+
       this.index++;
+      if (this.index === this.len) return;
+      var correct = this.cards[this.index].correct;
+      this.cards[this.index].correct = this.cards[this.index - 1].correct;
+      setTimeout(function () {
+        _this.cards[_this.index].correct = correct;
+      }, 300);
       this.currentCard = this.cards[this.index];
     }
   }]);

@@ -5,6 +5,7 @@ export class PracticeTrivia {
     this.deck = new Deck();
     this.score = 0;
     this.completed = false;
+    this.range = null;
   }
 
   nextQuestion() {
@@ -14,13 +15,25 @@ export class PracticeTrivia {
   }
 
   updateScore(answer) {
-    if (!this.deck.currentCard.correctAnswer(answer)) this.deck.addWrong();
-    else this.score++;
+    if (!this.deck.currentCard.correctAnswer(answer)) {
+      this.deck.addWrong();
+      return false;
+    } else {
+      this.score++;
+      return true;
+    } 
   }
 
   isOver () {
-    debugger
-    return this.deck.len === this.deck.index;
+    if (this.deck.len === this.deck.index) {
+      if (this.score <=3) this.range = 'Need Improvements'
+      else if (this.score <= 6) this.range = 'Solid Score'
+      else if (this.score <= 9) this.range = 'Trivia Wiz'
+      else this.range = 'Perfect Score!'
+      return true
+    }
+
+    return false;
   }
 }
 
@@ -44,6 +57,15 @@ export class Deck {
 
   nextCard() {
     this.index++;
+    if (this.index === this.len) return;
+
+    let correct = this.cards[this.index].correct;
+    this.cards[this.index].correct = this.cards[this.index-1].correct;
+
+    setTimeout(()=> {
+      this.cards[this.index].correct = correct;
+    }, 300)
+    
     this.currentCard = this.cards[this.index];
   }
 }

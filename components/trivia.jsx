@@ -13,7 +13,10 @@ class Trivia extends React.Component {
   beginCount() {
     for (let i = 1; i < 6; i++) {
       let num = i*1000;
-      setTimeout(()=> this.setState({time: this.state.time-1}), num)
+      let question = this.props.practice.deck.currentCard.question;
+      setTimeout(()=> {
+        if (question === this.props.practice.deck.currentCard.question && !this.props.practice.deck.currentCard.answered)this.setState({time: this.state.time-1})
+      }, num)
     }
   }
 
@@ -43,7 +46,7 @@ class Trivia extends React.Component {
   switchQuestion(e) {
     e.preventDefault()
     this.props.practice.nextQuestion(this.state.result)
-    if (this.props.speed) this.setState({result: null, show: !this.state.show, time: 7, countdown: true})
+    if (this.props.speed) this.setState({result: null, show: !this.state.show, time: 5, countdown: true})
     else this.setState({result: null, show: !this.state.show})
   }
 

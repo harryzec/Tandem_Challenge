@@ -474,13 +474,18 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
     value: function beginCount() {
       var _this2 = this;
 
-      for (var i = 1; i < 6; i++) {
+      var _loop = function _loop(i) {
         var num = i * 1000;
+        var question = _this2.props.practice.deck.currentCard.question;
         setTimeout(function () {
-          return _this2.setState({
+          if (question === _this2.props.practice.deck.currentCard.question && !_this2.props.practice.deck.currentCard.answered) _this2.setState({
             time: _this2.state.time - 1
           });
         }, num);
+      };
+
+      for (var i = 1; i < 6; i++) {
+        _loop(i);
       }
     }
   }, {
@@ -534,7 +539,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       if (this.props.speed) this.setState({
         result: null,
         show: !this.state.show,
-        time: 7,
+        time: 5,
         countdown: true
       });else this.setState({
         result: null,

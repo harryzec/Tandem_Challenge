@@ -15,6 +15,7 @@
   align-items: center;
   font-size: 25px;
   color: white;
+  margin-left: 23%;
 }
 
 .gameContent {
@@ -272,7 +273,7 @@
 }
 
 .content {
-  background-image: url('deskpic.jpg');
+  background-image: url('./pictures/deskpic.jpg');
   width: 100vw;
   height: 100vh;
 }
@@ -316,3 +317,40 @@
   margin-top: 19%;
   margin-left: 15%;
 }
+
+.networkIcons {
+  display: flex;
+  height: 13%;
+  margin-top: 30%;
+  width: 50%;
+  margin-top: 26%;
+  margin-left: 14%;
+}
+
+.LinkedIn {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-image: url(./pictures/linkedin.png);
+  background-size: contain;
+}
+
+.Github {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-image: url(./pictures/git.png);
+  background-size: contain;
+}
+
+.portfolio {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-image: url(./pictures/harry.png);
+  background-size: contain;
+}
+

@@ -40,17 +40,27 @@ class Splash extends React.Component {
     let instructButton;
     let quit;
 
+    let network = (
+      <div className='networkIcons'>
+        <a className='LinkedIn' href='https://www.linkedin.com/in/harry-zec-7157a4a8/'></a>
+        <a href='https://github.com/harryzec' className='Github'></a>
+        <a className='portfolio' href='https://harryzec.github.io'></a>
+      </div>
+    )
+
     if (this.state.instructions) {
       instructions = (
         <div className='instructions'>
         {this.state.instructions}
         </div>
       )
+      network = null;
     }
 
     if (this.state.practice !== null) {
       practice = <Trivia practice={this.state.practice} endGame={this.endGame} speed={this.state.speed}/>
       quit = <div className='splashButton' onClick={this.endGame}>Quit Game</div>
+      network = null;
     }
     else {
       startButton = <div className='splashButton' onClick={(e) => this.startGame(e, false)}>Practice!</div>
@@ -71,6 +81,7 @@ class Splash extends React.Component {
           <div className='content'>
             {practice}
             {instructions}
+            {network}
           </div>
         </div>
       </div>

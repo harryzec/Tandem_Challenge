@@ -349,11 +349,24 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       var instructions;
       var instructButton;
       var quit;
+      var network = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "networkIcons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "LinkedIn",
+        href: "https://www.linkedin.com/in/harry-zec-7157a4a8/"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://github.com/harryzec",
+        className: "Github"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "portfolio",
+        href: "https://harryzec.github.io"
+      }));
 
       if (this.state.instructions) {
         instructions = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "instructions"
         }, this.state.instructions);
+        network = null;
       }
 
       if (this.state.practice !== null) {
@@ -366,6 +379,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
           className: "splashButton",
           onClick: this.endGame
         }, "Quit Game");
+        network = null;
       } else {
         startButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "splashButton",
@@ -395,7 +409,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         className: "splashButtons"
       }, startButton, speedButton, instructButton, quit), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content"
-      }, practice, instructions)));
+      }, practice, instructions, network)));
     }
   }]);
 

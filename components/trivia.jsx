@@ -76,13 +76,13 @@ class Trivia extends React.Component {
     }
 
     if (this.props.practice.completed) {
-      
+      let viewWrong;
       if (this.props.practice.deck.wrong.length) viewWrong = <div className='backButtons' onClick={()=> this.setState({incorrect: true})}>View the cards you got wrong</div>
 
       return(
         <div className='finishedGame'>
-          Your Score: {this.props.practice.score}
-          {this.props.practice.range}
+          <p className='scoreInfo'>Your Score: {this.props.practice.score}</p>
+          <p className='scoreInfo'>{this.props.practice.range}</p>
           <div className='backButtons' onClick={this.props.endGame}>Exit</div>
           {viewWrong}
         </div>

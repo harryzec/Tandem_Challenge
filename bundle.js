@@ -597,6 +597,7 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
       }
 
       if (this.props.practice.completed) {
+        var viewWrong;
         if (this.props.practice.deck.wrong.length) viewWrong = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "backButtons",
           onClick: function onClick() {
@@ -607,7 +608,11 @@ var Trivia = /*#__PURE__*/function (_React$Component) {
         }, "View the cards you got wrong");
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "finishedGame"
-        }, "Your Score: ", this.props.practice.score, this.props.practice.range, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "scoreInfo"
+        }, "Your Score: ", this.props.practice.score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "scoreInfo"
+        }, this.props.practice.range), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "backButtons",
           onClick: this.props.endGame
         }, "Exit"), viewWrong);

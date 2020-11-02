@@ -42,10 +42,10 @@ class Incorrect extends React.Component {
       setTimeout(()=> this.setState({start: false}), 2300);
     } else  {
 
-      let next = <div onClick={this.next}>Next</div>
-      let prev = <div onClick={this.prev}>Prev</div>
-      if (this.state.i === 0) prev = <div>Prev</div>
-      if (this.state.i === this.state.len-1) next = <div onClick={this.props.endGame}>Exit</div>
+      let next = <div className='click' onClick={this.next}>Next</div>
+      let prev = <div className='click' onClick={this.prev}>Prev</div>
+      if (this.state.i === 0) prev = <div className='click'>Prev</div>
+      if (this.state.i === this.state.len-1) next = <div className='click' onClick={this.props.endGame}>Exit</div>
 
       info = (
         <div className='cardContent'>
@@ -61,7 +61,7 @@ class Incorrect extends React.Component {
     }
 
     return(
-      <div className='cardandscore'>
+      <div className='incorrectcard'>
       <div className='maincardcontainer'>
 
       <div className='thecard'>

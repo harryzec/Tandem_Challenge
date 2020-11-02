@@ -203,13 +203,18 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
         }, 2300);
       } else {
         var next = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "click",
           onClick: this.next
         }, "Next");
         var prev = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "click",
           onClick: this.prev
         }, "Prev");
-        if (this.state.i === 0) prev = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Prev");
+        if (this.state.i === 0) prev = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "click"
+        }, "Prev");
         if (this.state.i === this.state.len - 1) next = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "click",
           onClick: this.props.endGame
         }, "Exit");
         info = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -222,7 +227,7 @@ var Incorrect = /*#__PURE__*/function (_React$Component) {
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "cardandscore"
+        className: "incorrectcard"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "maincardcontainer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

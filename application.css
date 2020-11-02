@@ -8,6 +8,15 @@
   display: flex;
 }
 
+.incorrectcard {
+  margin-top: 22.5%;
+  margin-left: 8%;
+}
+
+.click {
+  cursor: pointer;
+}
+
 .goodorbad {
   display: block;
   height: 10%;

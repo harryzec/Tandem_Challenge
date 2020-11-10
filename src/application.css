@@ -301,7 +301,7 @@
 }
 
 .content {
-  background-image: url('./pictures/deskpic.jpg');
+  background-image: url('../pictures/deskpic.jpg');
   width: 100vw;
   height: 100vh;
 }
@@ -360,7 +360,7 @@
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
-  background-image: url(./pictures/linkedin.png);
+  background-image: url('../pictures/linkedin.png');
   background-size: contain;
 }
 
@@ -369,7 +369,7 @@
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
-  background-image: url(./pictures/git.png);
+  background-image: url('../pictures/git.png');
   background-size: contain;
 }
 
@@ -378,7 +378,7 @@
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
-  background-image: url(./pictures/harry.png);
+  background-image: url('../pictures/harry.png');
   background-size: contain;
 }
 

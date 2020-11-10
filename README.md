@@ -6,7 +6,7 @@
 
 QuickTriv is an application that allows you to get in a quick game of Trivia! It is a multiple choice game and allows for a timed option as well to really test your skills. 
 
-<!-- <a href="https://harryzec.github.io/tandem_challenge/">Live Demo</a> -->
+<a href="https://harryzec.github.io/tandem_challenge/">Live Demo</a>
 
 ## Instructions
 * npm install
